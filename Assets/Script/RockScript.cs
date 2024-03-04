@@ -6,6 +6,7 @@ using UnityEngine;
 public class RockScript : MonoBehaviour
 {
     private TypeOfRocks Rocks;
+    private GameObject[] childsOfLargeRock;
 
     private void Start()
     {
@@ -20,9 +21,14 @@ public class RockScript : MonoBehaviour
         if (gameObject.CompareTag("LargeRock"))
         {
             Rocks = TypeOfRocks.largeRock;
+            //**************************************A CHANGER***********************************
+            //childsOfLargeRock = GetComponentsInChildren<GameObject>();
+
+            //foreach (GameObject mediumRocks in childsOfLargeRock)
+            //{
+            //    mediumRocks.SetActive(false);
+            //}
         }
-
-
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -49,10 +55,18 @@ public class RockScript : MonoBehaviour
         }
         if (Rocks == TypeOfRocks.largeRock)
         {
-            if (collision.gameObject.CompareTag("BigBullet"))
+            if (collision.gameObject.CompareTag("Player"))
             {
-                //Instantiate ? or set active true ? 2 medium rocks
-                //destroy or set active false gameobject
+                //Call GameManagerLife
+            }
+            if (collision.gameObject.CompareTag("BigBullet"))
+            {  
+                //**************************************A CHANGER***********************************
+                //foreach(GameObject mediumRocks in childsOfLargeRock)
+                //{
+                //    mediumRocks.SetActive(true);
+                //}
+                gameObject.SetActive(false);
             }
         }
     }

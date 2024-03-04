@@ -8,6 +8,8 @@ TagManager:
   - SmallRock
   - MediumRock
   - LargeRock
+  - BigBullet
+  - SmallBullet
   layers:
   - Default
   - TransparentFX
