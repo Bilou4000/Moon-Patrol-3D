@@ -2,14 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 8, maxSpeed = 10, minusSpeed = 5, constantSpeed = 8;
+    [SerializeField] private float moveSpeed = 8, maxSpeed = 10, minusSpeed = 5, constantSpeed = 8, 
+        jumpForce = 3, counterJumpForce = -3, maxHold = 5, holdTimer = 3;
 
     private MoonPatrolInput input = null;
     private Rigidbody rb = null;
     private Vector2 moveVector = Vector2.zero;
+    private bool isJumping, isGrounded;
 
     private void Awake()
     {
@@ -22,6 +25,8 @@ public class PlayerMovement : MonoBehaviour
         input.Enable();
         input.Player.Move.performed += OnMovementPerformed;
         input.Player.Move.canceled += OnMovementCancelled;
+        input.Player.Jump.performed += OnJumpPerformed;
+        input.Player.Jump.canceled += OnJumpCancelled;
     }
 
     private void OnDisable()
@@ -29,6 +34,8 @@ public class PlayerMovement : MonoBehaviour
         input.Disable();
         input.Player.Move.performed -= OnMovementPerformed;
         input.Player.Move.canceled -= OnMovementCancelled;
+        input.Player.Jump.performed -= OnJumpPerformed;
+        input.Player.Jump.canceled -= OnJumpCancelled;
     }
 
     private void FixedUpdate()
@@ -47,6 +54,17 @@ public class PlayerMovement : MonoBehaviour
         {
             moveSpeed = constantSpeed;
         }
+
+        if (isJumping && holdTimer < maxHold)
+        {
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            holdTimer += Time.fixedDeltaTime;
+        }
+
+        if(rb.velocity.y < 0)
+        {
+            rb.AddForce(Vector3.up * counterJumpForce, ForceMode.Impulse);
+        }
     }
 
     private void OnMovementPerformed(InputAction.CallbackContext value)
@@ -57,5 +75,36 @@ public class PlayerMovement : MonoBehaviour
     private void OnMovementCancelled(InputAction.CallbackContext value)
     {
         moveVector = Vector2.zero;
+    }
+
+    private void OnJumpPerformed(InputAction.CallbackContext value)
+    {
+        isJumping = true;
+    }
+
+    private void OnJumpCancelled(InputAction.CallbackContext value)
+    {
+        isJumping = false;
+        if (isGrounded)
+        {
+            holdTimer = 0;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = true;
+        }
+
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = false;
+        }
     }
 }
