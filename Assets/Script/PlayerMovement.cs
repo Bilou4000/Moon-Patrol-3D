@@ -6,8 +6,13 @@ using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 8, maxSpeed = 10, minusSpeed = 5, constantSpeed = 8, 
-        jumpForce = 3, counterJumpForce = -3, maxHold = 5, holdTimer = 3;
+    [Header("Move")]
+    [SerializeField] private float moveSpeed = 8;
+    [SerializeField] private float maxSpeed = 10, minusSpeed = 5, constantSpeed = 8;
+
+    [Header("Jump")]
+    [SerializeField] private float jumpForce = 3;
+    [SerializeField] private float counterJumpForce = -3, maxHold = 5, holdTimer = 3;
 
     private MoonPatrolInput input = null;
     private Rigidbody rb = null;
