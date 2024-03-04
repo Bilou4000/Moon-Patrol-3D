@@ -20,6 +20,8 @@ public class RockScript : MonoBehaviour
         }
         if (gameObject.CompareTag("LargeRock"))
         {
+            foreach (Transform child in transform)
+            { child.gameObject.SetActive(false); }
             Rocks = TypeOfRocks.largeRock;
             //**************************************A CHANGER***********************************
             //childsOfLargeRock = GetComponentsInChildren<GameObject>();
@@ -60,12 +62,12 @@ public class RockScript : MonoBehaviour
                 //Call GameManagerLife
             }
             if (collision.gameObject.CompareTag("BigBullet"))
-            {  
+            {
                 //**************************************A CHANGER***********************************
-                //foreach(GameObject mediumRocks in childsOfLargeRock)
-                //{
-                //    mediumRocks.SetActive(true);
-                //}
+                foreach (Transform child in transform)
+                {
+                    child.gameObject.SetActive(true);
+                }
                 gameObject.SetActive(false);
             }
         }
