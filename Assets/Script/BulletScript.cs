@@ -11,6 +11,11 @@ public class BulletScript : MonoBehaviour
         {
             Invoke("Blast", bigBulletDestructionTime);
         }
+
+        if (gameObject.CompareTag("SmallBullet"))
+        {
+            Invoke("Blast", bigBulletDestructionTime);
+        }
     }
 
     
@@ -20,7 +25,12 @@ public class BulletScript : MonoBehaviour
         {
             transform.position += -(transform.up * bigBulletSpeed * Time.deltaTime);
         }
-       
+
+        //if (gameObject.CompareTag("SmallBullet"))
+        //{
+        //    transform.position += -(transform.up * smallBulletSpeed * Time.deltaTime);
+        //}
+
     }
 
     void Blast()

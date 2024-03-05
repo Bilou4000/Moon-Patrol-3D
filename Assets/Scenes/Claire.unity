@@ -908,8 +908,7 @@ MonoBehaviour:
   bigBullet: {fileID: 1022396502762722930, guid: c4fd7419a4188ba4f81874b4f8465c9a, type: 3}
   smallBullet: {fileID: 5163131396508358850, guid: ee7fff7937de4444aa0b0e377ea94941, type: 3}
   turret: {fileID: 777036040}
-  smoothRotation: 0
-  touretMaxRotation: 4.5
+  touretMaxRotation: 2
 --- !u!1 &1224255700
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,8 +7,7 @@ using static UnityEngine.GraphicsBuffer;
 public class PlayerShooting : MonoBehaviour
 {
     [SerializeField] private GameObject bigBullet, smallBullet, turret;
-    [SerializeField] private float smoothRotation, touretMaxRotation;
-    private Quaternion  yQuater, xQuater;
+    [SerializeField] private float touretMaxRotation;
 
     void Start()
     {
@@ -25,25 +24,22 @@ public class PlayerShooting : MonoBehaviour
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(tempMousePosition);
         mousePos.z = 0;
 
-
-        if(mousePos.y > touretMaxRotation)
+        if (mousePos.y > touretMaxRotation)
         {
             turret.transform.LookAt(mousePos, Vector3.up);
         }
 
-        if (turret.transform.rotation.x > 42)
-        {
-            //Debug.Log(mousePos);
-            Debug.Log("Please");
-            //turret.transform.rotation = transform.rotation;
-        }
-
-
+        Debug.Log(tempMousePosition);
 
 
         if (Input.GetKeyUp(KeyCode.Mouse0) && !GameObject.Find("Big Bullet(Clone)"))
         {
             Instantiate(bigBullet, gameObject.transform.position + new Vector3(1,0,0), Quaternion.Euler(0,0,90));
+        }
+
+        if (Input.GetKeyUp(KeyCode.Mouse1) && !GameObject.Find("Small Bullet(Clone)"))
+        {
+            Instantiate(smallBullet, turret.transform.position + new Vector3(0, 1, 0), Quaternion.LookRotation(mousePos) * Quaternion.Euler(90,0,0));
         }
     }
 }

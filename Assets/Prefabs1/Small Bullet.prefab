@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3459394285531505846}
   - component: {fileID: 1151923916782152632}
   - component: {fileID: 9163228327919443388}
+  - component: {fileID: 8147274515074172758}
   m_Layer: 0
   m_Name: Small Bullet
   m_TagString: SmallBullet
@@ -107,3 +108,18 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8147274515074172758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5163131396508358850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee0e143eed68ea243bce8702137e3b67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bigBulletSpeed: 20
+  smallBulletSpeed: 20
+  bigBulletDestructionTime: 1
