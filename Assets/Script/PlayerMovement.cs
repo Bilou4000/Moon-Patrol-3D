@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public static PlayerMovement instance;
+
     [Header("Move")]
     [SerializeField] private float moveSpeed = 8;
     [SerializeField] private float maxSpeed = 10, minusSpeed = 5, constantSpeed = 8;
@@ -20,6 +22,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
+        instance = this;
+
         input = new MoonPatrolInput();
         rb = GetComponent<Rigidbody>();
     }
@@ -107,5 +111,10 @@ public class PlayerMovement : MonoBehaviour
         {
             isGrounded = false;
         }
+    }
+
+    public float GetMoveSpeed()
+    {
+        return moveSpeed;
     }
 }

@@ -4,18 +4,10 @@ using UnityEngine;
 
 public class BulletScript : MonoBehaviour
 {
-    [SerializeField] float bigBulletSpeed, smallBulletSpeed, bigBulletDestructionTime;
+    [SerializeField] float bulletSpeed, bulletDestructionTime;
     void Start()
     {
-        if(gameObject.CompareTag("BigBullet"))
-        {
-            Invoke("Blast", bigBulletDestructionTime);
-        }
-
-        if (gameObject.CompareTag("SmallBullet"))
-        {
-            Invoke("Blast", bigBulletDestructionTime);
-        }
+        Invoke("Blast", bulletDestructionTime);
     }
 
     
@@ -23,12 +15,12 @@ public class BulletScript : MonoBehaviour
     {
         if(gameObject.CompareTag("BigBullet"))
         {
-            transform.position += -(transform.up * bigBulletSpeed * Time.deltaTime);
+            transform.position += -(transform.up * bulletSpeed * PlayerMovement.instance.GetMoveSpeed() * Time.deltaTime);
         }
 
         if (gameObject.CompareTag("SmallBullet"))
         {
-            transform.position += transform.forward * smallBulletSpeed * Time.deltaTime;
+            transform.position += transform.forward * bulletSpeed * PlayerMovement.instance.GetMoveSpeed() * Time.deltaTime;
         }
 
     }
