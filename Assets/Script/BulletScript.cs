@@ -29,4 +29,12 @@ public class BulletScript : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("SmallRock") || collision.gameObject.CompareTag("MediumRock") || collision.gameObject.CompareTag("LargeRock"))
+        {
+            Destroy(gameObject);
+        }
+    }
 }
