@@ -28,7 +28,7 @@ public class BulletScript : MonoBehaviour
 
         if (gameObject.CompareTag("SmallBullet"))
         {
-            transform.position += transform.up * smallBulletSpeed * Time.deltaTime;
+            transform.position += transform.forward * smallBulletSpeed * Time.deltaTime;
         }
 
     }
