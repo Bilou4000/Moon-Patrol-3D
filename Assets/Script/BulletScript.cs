@@ -26,10 +26,10 @@ public class BulletScript : MonoBehaviour
             transform.position += -(transform.up * bigBulletSpeed * Time.deltaTime);
         }
 
-        //if (gameObject.CompareTag("SmallBullet"))
-        //{
-        //    transform.position += -(transform.up * smallBulletSpeed * Time.deltaTime);
-        //}
+        if (gameObject.CompareTag("SmallBullet"))
+        {
+            transform.position += transform.up * smallBulletSpeed * Time.deltaTime;
+        }
 
     }
 

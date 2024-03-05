@@ -122,4 +122,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bigBulletSpeed: 20
   smallBulletSpeed: 20
-  bigBulletDestructionTime: 1
+  bigBulletDestructionTime: 0.5
