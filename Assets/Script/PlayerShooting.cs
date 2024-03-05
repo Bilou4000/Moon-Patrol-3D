@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class PlayerShooting : MonoBehaviour
 {
-    [SerializeField] GameObject bigBullet, smallBullet, turret;
-    [SerializeField] float smoothRotation;
+    [SerializeField] private GameObject bigBullet, smallBullet, turret;
+    [SerializeField] private float smoothRotation, touretMaxRotation;
     private Quaternion  yQuater, xQuater;
 
     void Start()
@@ -17,18 +18,30 @@ public class PlayerShooting : MonoBehaviour
     
     void Update()
     {
-      
-        Vector3 aim = Input.mousePosition;
-        aim.z = 0;
 
-        //turret.transform.up = aim;
-        //xQuater = new Quaternion((aim.x - smoothRotation) * Time.deltaTime, 0, 0, 1);
-        //yQuater = new Quaternion(0, (aim.y + smoothRotation) * Time.deltaTime, 0, 1);
-        //turret.transform.rotation = yQuater * xQuater * transform.rotation;
+        Vector3 tempMousePosition = Input.mousePosition;
+        tempMousePosition.z = -Camera.main.transform.position.z; 
 
-        turret.transform.up = new Vector3(aim.x, aim.y, 0);
-        turret.transform.rotation *= Quaternion.Euler(0, 0, 50);
-        if(Input.GetKeyUp(KeyCode.Mouse0) && !GameObject.Find("Big Bullet(Clone)"))
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(tempMousePosition);
+        mousePos.z = 0;
+
+
+        if(mousePos.y > touretMaxRotation)
+        {
+            turret.transform.LookAt(mousePos, Vector3.up);
+        }
+
+        if (turret.transform.rotation.x > 42)
+        {
+            //Debug.Log(mousePos);
+            Debug.Log("Please");
+            //turret.transform.rotation = transform.rotation;
+        }
+
+
+
+
+        if (Input.GetKeyUp(KeyCode.Mouse0) && !GameObject.Find("Big Bullet(Clone)"))
         {
             Instantiate(bigBullet, gameObject.transform.position + new Vector3(1,0,0), Quaternion.Euler(0,0,90));
         }

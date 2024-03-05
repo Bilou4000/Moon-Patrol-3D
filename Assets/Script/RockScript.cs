@@ -21,7 +21,9 @@ public class RockScript : MonoBehaviour
         if (gameObject.CompareTag("LargeRock"))
         {
             foreach (Transform child in transform)
-            { child.gameObject.SetActive(false); }
+            { 
+                child.gameObject.SetActive(false); 
+            }
             Rocks = TypeOfRocks.largeRock;
             //**************************************A CHANGER***********************************
             //childsOfLargeRock = GetComponentsInChildren<GameObject>();
