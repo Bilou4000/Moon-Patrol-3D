@@ -59,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
             moveSpeed = constantSpeed;
         }
 
-        if (isJumping && holdTimer < maxHold)
+        if (isJumping && holdTimer < maxHold && isGrounded)
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             holdTimer += Time.fixedDeltaTime;
@@ -89,10 +89,7 @@ public class PlayerMovement : MonoBehaviour
     private void OnJumpCancelled(InputAction.CallbackContext value)
     {
         isJumping = false;
-        if (isGrounded)
-        {
-            holdTimer = 0;
-        }
+        holdTimer = 0;
     }
 
     private void OnCollisionEnter(Collision collision)
