@@ -15,4 +15,17 @@ public class TankScript : MonoBehaviour
     {
         transform.position += transform.forward * speed * Time.deltaTime;
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            //Call GameManager life player 
+        }
+
+        if (collision.gameObject.CompareTag("BigBullet"))
+        {
+            Destroy(gameObject);
+        }
+    }
 }
