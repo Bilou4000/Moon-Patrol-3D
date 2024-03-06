@@ -22,7 +22,7 @@ public class FlyingEnemyScript : MonoBehaviour
     {
         CalculateCameraBounds();
 
-        transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * PlayerMovement.instance.GetMoveSpeed() * Time.deltaTime);
 
         if(transform.position == targetPos)
         {
@@ -44,5 +44,13 @@ public class FlyingEnemyScript : MonoBehaviour
         maxX = mainCamera.ViewportToWorldPoint(new Vector3(1, 0, CameraNearPlane)).x;
         minY = mainCamera.ViewportToWorldPoint(new Vector3(0, 0.5f, CameraNearPlane)).y;
         maxY = mainCamera.ViewportToWorldPoint(new Vector3(0, 1, CameraNearPlane)).y;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("SmallBullet"))
+        {
+            Destroy(gameObject);
+        }
     }
 }
