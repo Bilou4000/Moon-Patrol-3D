@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
 
         if (allFloor.Length < 20)
         {
-            //mapState = (MapState)Random.Range(0, 3);
+            mapState = (MapState)Random.Range(0, 3);
 
             if (mapState == MapState.NoCrater)
             {
