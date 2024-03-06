@@ -28,7 +28,7 @@ public class PlayerShooting : MonoBehaviour
             turret.transform.LookAt(mousePos, Vector3.up);
         }
 
-        Debug.Log(tempMousePosition);
+        //Debug.Log(tempMousePosition);
 
 
         if (Input.GetKeyUp(KeyCode.Mouse0) && !GameObject.Find("Big Bullet(Clone)"))
