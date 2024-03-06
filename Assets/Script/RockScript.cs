@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class RockScript : MonoBehaviour
 {
+    [SerializeField] private GameObject mediumRock;
     private TypeOfRocks Rocks;
-    [SerializeField] GameObject mediumRock;
 
     private void Start()
     {
