@@ -6,7 +6,7 @@ using UnityEngine;
 public class RockScript : MonoBehaviour
 {
     private TypeOfRocks Rocks;
-    private GameObject[] childsOfLargeRock;
+    [SerializeField] GameObject mediumRock;
 
     private void Start()
     {
@@ -20,14 +20,9 @@ public class RockScript : MonoBehaviour
         }
         if (gameObject.CompareTag("LargeRock"))
         {
-            //****************************A CHANGER************************************
-            //need to instantiate child after so no set active
-            foreach (Transform child in transform)
-            { 
-                child.gameObject.SetActive(false); 
-            }
-
+            
             Rocks = TypeOfRocks.largeRock;
+            
         }
     }
 
@@ -61,12 +56,9 @@ public class RockScript : MonoBehaviour
             }
             if (collision.gameObject.CompareTag("BigBullet"))
             {
-                //**************************************A CHANGER***********************************
-                foreach (Transform child in transform)
-                {
-                    child.gameObject.SetActive(true);
-                }
-                gameObject.SetActive(false);
+                Instantiate(mediumRock, new Vector3(transform.position.x +0.5f,transform.position.y,transform.position.z),Quaternion.identity );
+                Instantiate(mediumRock, new Vector3(transform.position.x - 0.5f, transform.position.y, transform.position.z), Quaternion.identity);
+                Destroy(gameObject) ;
             }
         }
     }
