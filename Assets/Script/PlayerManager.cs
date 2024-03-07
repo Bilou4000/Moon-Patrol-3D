@@ -85,9 +85,10 @@ public class PlayerManager : MonoBehaviour
     private IEnumerator Invicible(float time)
     {
         isInvincibile = true;
-
+        gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
         yield return new WaitForSeconds(time);
 
+        gameObject.GetComponent<MeshRenderer>().material.color = Color.white;
         isInvincibile = false;
     }
 
