@@ -21,8 +21,7 @@ public class RockScript : MonoBehaviour
         if (gameObject.CompareTag("LargeRock"))
         {
             
-            Rocks = TypeOfRocks.largeRock;
-            
+            Rocks = TypeOfRocks.largeRock;       
         }
     }
 

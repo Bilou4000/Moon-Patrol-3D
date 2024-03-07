@@ -1217,6 +1217,8 @@ MonoBehaviour:
   jumpForce: 3
   counterJumpForce: -0.5
   maxHold: 0.04
+  cameraOffset: 2
+  cameraTravelSpeed: 3
 --- !u!114 &1119525752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1247,8 +1249,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lives: 4
   score: 0
-  scoreThreshold: 50
-  timeAfterBingHit: 1
+  scoreThreshold: 1000
+  timeAfterBingHit: 2
   timeOfShield: 10
 --- !u!1 &1176945384
 GameObject:

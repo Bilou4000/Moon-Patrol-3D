@@ -9,20 +9,24 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Move")]
     [SerializeField] private float moveSpeed = 8;
-    [SerializeField] private float maxSpeed = 10, minusSpeed = 5, constantSpeed = 8; //cameraOffset;
+    [SerializeField] private float maxSpeed = 10, minusSpeed = 5, constantSpeed = 8;
+    private Vector2 moveVector = Vector2.zero;
 
     [Header("Jump")]
     [SerializeField] private float jumpForce = 3;
     [SerializeField] private float counterJumpForce = -3, maxHold = 5;
     private float holdTimer = 0;
+    private bool isJumping, isGrounded;
+
+    [Header("Camera")]
+    [SerializeField] private float cameraOffset = 2;
+    [SerializeField] private float cameraTravelSpeed;
+    private Camera mainCamera;
+    private Vector3 mainCameraPos;
+    private float cameraStartXPos;
 
     private MoonPatrolInput input = null;
     private Rigidbody rb = null;
-    //private Camera mainCamera;
-    //private Vector3 mainCameraPos;
-    private Vector2 moveVector = Vector2.zero;
-    //private float cameraStartXPos;
-    private bool isJumping, isGrounded;
 
     private void Awake()
     {
@@ -32,12 +36,12 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    //private void Start()
-    //{
-    //    mainCamera = Camera.main;
-
-    //    cameraStartXPos = mainCameraPos.x;
-    //}
+    private void Start()
+    {
+        mainCamera = Camera.main;
+        mainCameraPos = mainCamera.transform.localPosition;
+        cameraStartXPos = mainCameraPos.x;
+    }
 
     private void OnEnable()
     {
@@ -59,24 +63,28 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //mainCameraPos = mainCamera.transform.position;
-        //Debug.Log(mainCameraPos);
         transform.position += transform.right * moveSpeed * Time.deltaTime;
+        mainCamera.transform.localPosition = Vector3.Lerp(mainCamera.transform.localPosition, mainCameraPos, cameraTravelSpeed * Time.deltaTime);
 
         if (moveVector.x > 0)
         {
             moveSpeed = maxSpeed;
-            //mainCameraPos = new Vector3(cameraStartXPos + cameraOffset, mainCameraPos.y, mainCameraPos.z);
+
+            mainCameraPos = new Vector3(cameraStartXPos - cameraOffset, mainCameraPos.y, mainCameraPos.z);
+
+
         }
         else if (moveVector.x < 0)
         {
             moveSpeed = minusSpeed;
-            //mainCameraPos = new Vector3(cameraStartXPos - cameraOffset, mainCameraPos.y, mainCameraPos.z);
+
+            mainCameraPos = new Vector3(cameraStartXPos + cameraOffset, mainCameraPos.y, mainCameraPos.z);
         }
         else
         {
             moveSpeed = constantSpeed;
-            //mainCameraPos = new Vector3(cameraStartXPos, mainCameraPos.y, mainCameraPos.z);
+
+            mainCameraPos = new Vector3(cameraStartXPos, mainCameraPos.y, mainCameraPos.z);
         }
 
         if (isJumping && holdTimer < maxHold && isGrounded)
