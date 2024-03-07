@@ -7,9 +7,13 @@ public class MapScript : MonoBehaviour
 {
     [SerializeField] private GameObject floor, player;
 
+    [Header("Difficulty Modifier")]
+    [SerializeField] int craterDifficulty;
+    [SerializeField] int rockDifficulty;
+
     [Header("Rock")]
     [SerializeField] private GameObject smallRock;
-    [SerializeField] private GameObject mediumRock, largeRock;
+    [SerializeField] private GameObject mediumRock, largeRock, noRock;
     [SerializeField] private int smallRockChances, mediumRockChances, largeRockChances;
 
     [Header("Crater")]
@@ -17,7 +21,7 @@ public class MapScript : MonoBehaviour
     [SerializeField] private float bigCraterSize;
     [SerializeField] private int smallCraterPercent, bigCraterPercent;
 
-    bool canRock;
+    bool canRock, increaseDifficulty;
     private GameObject[] allFloor, allSmallRocks, allMediumRocks;
     private GameObject lastFloor, oldestFloor;
     private MapState mapState;
@@ -58,7 +62,7 @@ public class MapScript : MonoBehaviour
     {
         oldestFloor = allFloor.First();
         RandomFloor();
-        if (allFloor.Length < 20)
+        if (allFloor.Length < 40)
         {
 
 
@@ -74,7 +78,7 @@ public class MapScript : MonoBehaviour
                 Instantiate(floor, new Vector3(lastFloor.transform.position.x + lastFloorSize.x, -1.4f, -0.5f), transform.rotation);
                 if (canRock)
                 {
-                    Instantiate(RandomRock(), new Vector3(lastFloor.transform.position.x, lastFloor.transform.position.y + 2, lastFloor.transform.position.z), Quaternion.identity);
+                    Instantiate(RandomRock(), new Vector3(lastFloor.transform.position.x, lastFloor.transform.position.y + 2, lastFloor.transform.position.z), transform.rotation);
                     canRock = false;
                 }
                 canRock = true;
@@ -101,10 +105,18 @@ public class MapScript : MonoBehaviour
                 RandomFloor();
             }
         }
-        else if (allFloor.Length >= 20 && Mathf.Abs(oldestFloor.transform.position.x - player.transform.position.x) > 100)
+        else if (allFloor.Length >= 40 && Mathf.Abs(oldestFloor.transform.position.x - player.transform.position.x) > 100)
         {
             Destroy(oldestFloor);
-            
+            increaseDifficulty = !increaseDifficulty;
+            if (increaseDifficulty)
+            {
+                smallCraterPercent += craterDifficulty;
+                bigCraterPercent += craterDifficulty;
+                smallRockChances += rockDifficulty;
+                mediumRockChances += rockDifficulty;
+                largeRockChances += rockDifficulty;
+            }
         }
 
     }
@@ -148,10 +160,10 @@ public class MapScript : MonoBehaviour
         }
         else if (rnd > (smallRockChances + largeRockChances + mediumRockChances))
         {
-            return null;
+            return noRock;
 
         }
-        return null;
+        return noRock;
     }
 
     public enum MapState
