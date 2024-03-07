@@ -1029,6 +1029,7 @@ GameObject:
   - component: {fileID: 1119525752}
   - component: {fileID: 1119525751}
   - component: {fileID: 1119525750}
+  - component: {fileID: 1119525753}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1271,6 +1272,23 @@ MonoBehaviour:
   smallBullet: {fileID: 5163131396508358850, guid: ee7fff7937de4444aa0b0e377ea94941, type: 3}
   turret: {fileID: 777036040}
   touretMaxRotation: 2
+--- !u!114 &1119525753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1119525743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89c182789d575834e897f775a54d9654, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lives: 4
+  score: 0
+  scoreThreshold: 1000
+  timeAfterBingHit: 2
+  timeOfShield: 10
 --- !u!1 &1176945384
 GameObject:
   m_ObjectHideFlags: 0
