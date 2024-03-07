@@ -25,12 +25,7 @@ public class MapScript : MonoBehaviour
     {
         allFloor = GameObject.FindGameObjectsWithTag("Ground");
         time = Time.time;
-        //if(time >= 0 && time < 10)
-        //{
-        //    mapState = (MapState)Random.Range(0, 3);
 
-        //    floorDifficulty = { };
-        //}
         if (time > nextActionTime)
         {
             nextActionTime += period;
