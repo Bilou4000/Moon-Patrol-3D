@@ -40,19 +40,19 @@ public class SandyRockMaterialSwitch : MonoBehaviour
     
     public void LowQuality() {
         QualitySettings.SetQualityLevel(0, true);
-        QualitySettings.masterTextureLimit = 3;
+        QualitySettings.globalTextureMipmapLimit = 3;
     }
     public void MedQuality() {
         QualitySettings.SetQualityLevel(2, true);
-        QualitySettings.masterTextureLimit = 2;
+        QualitySettings.globalTextureMipmapLimit = 2;
     }
     public void HighQuality() {
         QualitySettings.SetQualityLevel(4, true);
-        QualitySettings.masterTextureLimit = 1;
+        QualitySettings.globalTextureMipmapLimit = 1;
     }
     public void UltraQuality() {
         QualitySettings.SetQualityLevel(5, true);
-        QualitySettings.masterTextureLimit = 0;
+        QualitySettings.globalTextureMipmapLimit = 0;
     }
    
 }
