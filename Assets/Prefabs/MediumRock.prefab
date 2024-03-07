@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7070963188927097154}
   - component: {fileID: 3931188266071744589}
   m_Layer: 0
-  m_Name: MediumRock (1)
+  m_Name: MediumRock
   m_TagString: MediumRock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

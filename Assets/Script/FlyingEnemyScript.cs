@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class FlyingEnemyScript : MonoBehaviour
 {
-    [SerializeField] private float speed, CameraNearPlane;
+    [SerializeField] private float shootingSpeed ,speed, CameraNearPlane;
+    [SerializeField] private GameObject bullet;
     private Camera mainCamera;
     private float minX, maxX, minY, maxY;
     private Vector3 targetPos;
@@ -16,6 +17,8 @@ public class FlyingEnemyScript : MonoBehaviour
 
         CalculateCameraBounds();
         targetPos = GetRandomPosition();
+
+        InvokeRepeating("Shoot", shootingSpeed, shootingSpeed);
     }
 
     private void Update()
@@ -44,6 +47,11 @@ public class FlyingEnemyScript : MonoBehaviour
         maxX = mainCamera.ViewportToWorldPoint(new Vector3(1, 0, CameraNearPlane)).x;
         minY = mainCamera.ViewportToWorldPoint(new Vector3(0, 0.5f, CameraNearPlane)).y;
         maxY = mainCamera.ViewportToWorldPoint(new Vector3(0, 1, CameraNearPlane)).y;
+    }
+
+    private void Shoot()
+    {
+        Instantiate(bullet, transform.position, Quaternion.Euler(90,0,0));
     }
 
     private void OnCollisionEnter(Collision collision)
