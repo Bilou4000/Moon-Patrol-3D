@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class MapScript : MonoBehaviour
 {
-    [SerializeField] private GameObject floor;
+    [SerializeField] private GameObject floor, player;
     [SerializeField] private float smallCraterSize, bigCraterSize;
-    private new List <GameObject> allFloor;
-    private GameObject lastFloor;
+    [SerializeField] private int smallCraterPercent, bigCraterPercent;
+    private GameObject[] allFloor;
+    private GameObject lastFloor, oldestFloor;
     private MapState mapState;
     private MapState[] floorDifficulty;
     private float time, nextActionTime, period;
@@ -17,17 +18,13 @@ public class MapScript : MonoBehaviour
     private void Start()
     {
         period = 10;
-        GameObject firstFloor = GameObject.Find("Floor2");
-        allFloor.Add(firstFloor);
         //mapState = (MapState)3;
     }
 
     private void Update()
     {
-        
+        allFloor = GameObject.FindGameObjectsWithTag("Ground");
         time = Time.time;
-
-        Debug.Log(mapState.ToString());
         //if(time >= 0 && time < 10)
         //{
         //    mapState = (MapState)Random.Range(0, 3);
@@ -42,26 +39,37 @@ public class MapScript : MonoBehaviour
 
         //difficulty easy : if(this difficulty then -->)
         //if not do an edless with increasing difficulty
-
-        NextFloor();
+        if (player.transform.position.x < allFloor.Last().transform.position.x + 10) 
+        {
+            NextFloor();
+        }
+        if (player.transform.position.x > allFloor.First().transform.position.x)
+        {
+            allFloor.First().GetComponent<MeshRenderer>().material.color = Color.red;
+            Debug.Log(allFloor.First().transform.position.x);
+            //Destroy(allFloor.First());
+        }
+        
 
     }
 
     private void NextFloor()
     {
+        oldestFloor = allFloor.First();
         RandomFloor();
-        if (allFloor.Count < 20)
+        if (allFloor.Length < 20)
         {
 
 
             if (mapState == MapState.NoCrater)
             {
                 lastFloor = allFloor.Last();
+                
                 MeshRenderer renderer = lastFloor.GetComponent<MeshRenderer>();
                 Vector3 lastFloorSize = renderer.bounds.size;
 
-                allFloor.Add(Instantiate(floor, new Vector3(lastFloor.transform.position.x + lastFloorSize.x, -1.4f, -0.5f), transform.rotation));
-                mapState = (MapState)RandomFloor();
+                Instantiate(floor, new Vector3(lastFloor.transform.position.x + lastFloorSize.x, -1.4f, -0.5f), transform.rotation);
+                RandomFloor();
             }
             else if (mapState == MapState.SmallCrater)
             {
@@ -69,8 +77,8 @@ public class MapScript : MonoBehaviour
                 MeshRenderer renderer = lastFloor.GetComponent<MeshRenderer>();
                 Vector3 lastFloorSize = renderer.bounds.size;
 
-                allFloor.Add(Instantiate(floor, new Vector3(lastFloor.transform.position.x + lastFloorSize.x + smallCraterSize, -1.4f, -0.5f), transform.rotation));
-                mapState = (MapState)RandomFloor();
+                Instantiate(floor, new Vector3(lastFloor.transform.position.x + lastFloorSize.x + smallCraterSize, -1.4f, -0.5f), transform.rotation);
+                RandomFloor();
             }
             else if (mapState == MapState.BigCrater)
             {
@@ -78,16 +86,32 @@ public class MapScript : MonoBehaviour
                 MeshRenderer renderer = lastFloor.GetComponent<MeshRenderer>();
                 Vector3 lastFloorSize = renderer.bounds.size;
 
-                allFloor.Add(Instantiate(floor, new Vector3(lastFloor.transform.position.x + lastFloorSize.x + bigCraterSize, -1.4f, -0.5f), transform.rotation));
-                mapState = (MapState)RandomFloor();
+                Instantiate(floor, new Vector3(lastFloor.transform.position.x + lastFloorSize.x + bigCraterSize, -1.4f, -0.5f), transform.rotation);
+                RandomFloor();
             }
         }
-        
-    }
-    private int RandomFloor()
-    {
+        else if (allFloor.Length >= 20 && Mathf.Abs(oldestFloor.transform.position.x - player.transform.position.x) > 50)
+        {
+            Destroy(oldestFloor);
+        }
 
-        return Random.Range(0, 3);
+    }
+    private void RandomFloor()
+    {
+        int rnd = Random.Range(0, 101);
+       
+        if(rnd < smallCraterPercent)
+        {
+            mapState = (MapState)0;
+        }
+        else if (smallCraterPercent < rnd && rnd < (smallCraterPercent + bigCraterPercent))
+        {
+            mapState = (MapState)1;
+        }
+        else if(rnd > (smallCraterPercent + bigCraterPercent))
+        {
+            mapState = (MapState)2;
+        }
     }
     public enum MapState
     {
