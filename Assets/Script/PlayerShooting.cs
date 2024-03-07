@@ -33,7 +33,7 @@ public class PlayerShooting : MonoBehaviour
             Instantiate(bigBullet, gameObject.transform.position + new Vector3(1,0,0), Quaternion.Euler(0,0,90));
         }
 
-        if (Input.GetKeyUp(KeyCode.Mouse1) && !GameObject.Find("Small Bullet(Clone)"))
+        if (Input.GetKeyUp(KeyCode.Mouse1))
         {
             Instantiate(smallBullet,turret.transform.position + turret.transform.forward * 0.8f, turret.transform.rotation);
         }

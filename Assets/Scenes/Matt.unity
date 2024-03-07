@@ -1253,7 +1253,6 @@ MonoBehaviour:
   jumpForce: 3
   counterJumpForce: -0.5
   maxHold: 0.04
-  holdTimer: 0
 --- !u!114 &1119525752
 MonoBehaviour:
   m_ObjectHideFlags: 0
