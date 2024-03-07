@@ -7,7 +7,11 @@ public class RockScript : MonoBehaviour
 {
     [SerializeField] private GameObject mediumRock;
     private TypeOfRocks Rocks;
-
+    GameObject player;
+    private void Awake()
+    {
+        player = GameObject.Find("Player");
+    }
     private void Start()
     {
         if (gameObject.CompareTag("SmallRock"))
@@ -26,6 +30,13 @@ public class RockScript : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (transform.position.x + 20 < player.transform.position.x)
+        {
+            Destroy(gameObject);
+        }
+    }
     private void OnCollisionEnter(Collision collision)
     {
         if (Rocks == TypeOfRocks.smallRock)
@@ -56,9 +67,9 @@ public class RockScript : MonoBehaviour
             }
             if (collision.gameObject.CompareTag("BigBullet"))
             {
-                Instantiate(mediumRock, new Vector3(transform.position.x + 1.5f,transform.position.y - 1.5f,transform.position.z),Quaternion.identity );
-                Instantiate(mediumRock, new Vector3(transform.position.x - 0.8f, transform.position.y - 1.5f, transform.position.z), Quaternion.identity);
-                Destroy(gameObject) ;
+                Instantiate(mediumRock, new Vector3(transform.position.x + 1.5f,transform.position.y,transform.position.z),Quaternion.identity );
+                Instantiate(mediumRock, new Vector3(transform.position.x - 0.8f, transform.position.y, transform.position.z), Quaternion.identity);
+                Destroy(gameObject);
             }
         }
     }
