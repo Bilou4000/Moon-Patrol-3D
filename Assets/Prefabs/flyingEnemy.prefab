@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 765369b9cc3f47e44bbfee553c584a80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootingSpeed: 1.5
+  shootingSpeed: 3
   speed: 2.5
   CameraNearPlane: 9
   bullet: {fileID: 5163131396508358850, guid: 8fa65b294c2434c48ac148befce5d2a6, type: 3}

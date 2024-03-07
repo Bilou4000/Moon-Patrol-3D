@@ -8,12 +8,12 @@ public class PlayerManager : MonoBehaviour
 
     [Header("Lives")]
     [SerializeField] private float lives;
-    [SerializeField] private float maxLives;
-
+    private float maxLives;
 
     [Header("Score")]
     [SerializeField] private float score;
     [SerializeField] private float scoreThreshold;
+    private float startscoreThreshold;
 
     [Header("Invicible")]
     [SerializeField] private float timeAfterBingHit;
@@ -27,10 +27,8 @@ public class PlayerManager : MonoBehaviour
 
     private void Start()
     {
-        lives = 4;
-        maxLives = 4;
-        score = 0;
-        scoreThreshold = 1000;
+        maxLives = lives;
+        startscoreThreshold = scoreThreshold;
 
         GameManager.instance.UpdateLivesText(lives);
         GameManager.instance.UpdateScoreText(score);
@@ -48,7 +46,8 @@ public class PlayerManager : MonoBehaviour
         if (lives < maxLives && score >= scoreThreshold)
         {
             lives += 1;
-            scoreThreshold += 1000;
+            scoreThreshold += startscoreThreshold;
+            GameManager.instance.UpdateLivesText(lives);
         }
     }
     public float GetScore()
@@ -76,6 +75,11 @@ public class PlayerManager : MonoBehaviour
     {
         score += newScore;
         GameManager.instance.UpdateScoreText(score);
+    }
+
+    public void ShieldPickUp()
+    {
+        StartCoroutine(Invicible(timeOfShield));
     }
 
     private IEnumerator Invicible(float time)
