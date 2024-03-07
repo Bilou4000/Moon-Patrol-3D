@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2434693157002964891}
   - component: {fileID: 6400512890268565055}
   - component: {fileID: 3151105190893761153}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wheel (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 8851545763049338697}
   - component: {fileID: 6678983372064627588}
   - component: {fileID: 2384883433058764933}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -224,9 +224,9 @@ GameObject:
   - component: {fileID: 8168915384369780128}
   - component: {fileID: 5970870017456008650}
   - component: {fileID: 6001552328169847298}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tank
-  m_TagString: Enemy
+  m_TagString: Tank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -370,7 +370,7 @@ GameObject:
   - component: {fileID: 567400318621128822}
   - component: {fileID: 5551743355064420280}
   - component: {fileID: 1126930349832795764}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wheel (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -472,7 +472,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 53043020772268111}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wheels
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -510,7 +510,7 @@ GameObject:
   - component: {fileID: 8606562905964675090}
   - component: {fileID: 226020903019810436}
   - component: {fileID: 1697097176350660273}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wheel (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

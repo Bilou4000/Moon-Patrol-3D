@@ -32,7 +32,7 @@ public class RockScript : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("Player"))
             {
-                //Call GameManagerLife
+                PlayerManager.instance.LoseLife(1);
                 //can't be destroyed
             }
 
@@ -41,7 +41,7 @@ public class RockScript : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("Player"))
             {
-                //Call GameManagerLife
+                PlayerManager.instance.LoseLife(1);
             }
             if (collision.gameObject.CompareTag("BigBullet"))
             {
@@ -52,7 +52,7 @@ public class RockScript : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("Player"))
             {
-                //Call GameManagerLife
+                PlayerManager.instance.LoseLife(1);
             }
             if (collision.gameObject.CompareTag("BigBullet"))
             {
