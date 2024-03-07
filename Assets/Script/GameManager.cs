@@ -9,9 +9,18 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    [SerializeField] private GameObject UFO;
     [SerializeField] private TextMeshProUGUI scoreText, livesText;
-    [SerializeField] private float maxUFO, outOfScreenDistance;
+    [SerializeField] private float outOfScreenDistance;
+    private float actualTime;
+
+    [Header("Diificulty")]
+    [SerializeField] private float waitTimeBeforeDifficulty;
+    private float timeBeforeDifficultyIncrease;
+
+    [Header("UFO")]
+    [SerializeField] private GameObject UFO;
+    [SerializeField] private float maxUFO, timeBetweenUFO, minTimeBetweenUFO, timeToDecrease;
+
     private GameObject[] allUFO;
     private Transform thePlayer;
     private Vector3 posToAppear;
@@ -28,14 +37,23 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         thePlayer = PlayerMovement.instance.transform;
-        //TO CHANGE FOr DIFFICULTY ADJUSTMENT
-        InvokeRepeating("UFOInstantiate", 1f, 10f);
+        timeBeforeDifficultyIncrease = waitTimeBeforeDifficulty;
+
+        Invoke("UFOInstantiate", timeBetweenUFO);
     }
 
 
     private void Update()
     {
         allUFO = GameObject.FindGameObjectsWithTag("UFO");
+
+        actualTime = Time.time;
+
+        if(actualTime > waitTimeBeforeDifficulty && timeBetweenUFO > minTimeBetweenUFO)
+        {
+            waitTimeBeforeDifficulty += timeBeforeDifficultyIncrease;
+            timeBetweenUFO -= timeToDecrease;
+        }
     }
 
     private void ChooseSideOfScreen()
@@ -52,6 +70,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    //UFO
     private void UFOInstantiate()
     {
         ChooseSideOfScreen();
@@ -60,6 +79,8 @@ public class GameManager : MonoBehaviour
         {
             Instantiate(UFO, posToAppear, transform.rotation);
         }
+
+        Invoke("UFOInstantiate", timeBetweenUFO);
     }
 
     public void UpdateScoreText(float score)
