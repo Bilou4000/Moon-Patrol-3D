@@ -2120,8 +2120,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d5b8734e271239488c371f778a6d161, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UFO: {fileID: 7145238492098584821, guid: 01eca4c9c8bffff4899074cb86e0b6f6, type: 3}
   scoreText: {fileID: 1499790405}
   livesText: {fileID: 875745970}
+  maxUFO: 3
+  outOfScreenDistance: 16
 --- !u!1 &2020890853
 GameObject:
   m_ObjectHideFlags: 0
