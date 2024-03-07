@@ -42,7 +42,7 @@ public class EnemyBullet : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            //GameManager player life
+            PlayerManager.instance.LoseLife(1);
         }
 
         if (collision.gameObject.CompareTag("Ground"))
