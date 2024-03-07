@@ -51,7 +51,10 @@ public class FlyingEnemyScript : MonoBehaviour
 
     private void Shoot()
     {
-        Instantiate(bullet, transform.position, Quaternion.Euler(90,0,0));
+        if(transform.position.x > minX)
+        {
+            Instantiate(bullet, transform.position, Quaternion.Euler(90, 0, 0));
+        }
     }
 
     private void OnCollisionEnter(Collision collision)

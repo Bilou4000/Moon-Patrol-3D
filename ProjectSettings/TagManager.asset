@@ -10,7 +10,8 @@ TagManager:
   - LargeRock
   - BigBullet
   - SmallBullet
-  - Enemy
+  - Tank
+  - UFO
   layers:
   - Default
   - TransparentFX

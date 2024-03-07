@@ -32,6 +32,26 @@ public class BulletScript : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (collision.gameObject.CompareTag("MediumRock"))
+        {
+            PlayerManager.instance.SetScore(100);
+        }
+
+        if (collision.gameObject.CompareTag("LargeRock"))
+        {
+            PlayerManager.instance.SetScore(200);
+        }
+
+        if (collision.gameObject.CompareTag("Tank"))
+        {
+            PlayerManager.instance.SetScore(200);
+        }
+
+        if (collision.gameObject.CompareTag("UFO"))
+        {
+            PlayerManager.instance.SetScore(100);
+        }
+
         Destroy(gameObject);
     }
 }
