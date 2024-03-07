@@ -5,8 +5,8 @@ using UnityEngine.XR;
 
 public class EnemyBullet : MonoBehaviour
 {
-    [SerializeField] private GameObject impactToJump;
-    [SerializeField] private float bulletSpeed;
+    [SerializeField] private GameObject mine;
+    [SerializeField] private float bulletSpeed, positionOfMine;
     private GameObject bulletLocation;
     private PlayerMovement thePlayer;
     private Vector3 pointToGoTo;
@@ -31,7 +31,7 @@ public class EnemyBullet : MonoBehaviour
             hasTouchedPoint = true;
 
             transform.rotation = Quaternion.Euler(90,0,0);
-            pointToGoTo = thePlayer.transform.position + new Vector3(3f, -1, 0);
+            pointToGoTo = thePlayer.transform.position + new Vector3(positionOfMine, -1, 0);
         }
 
         transform.position = Vector3.MoveTowards(transform.position, pointToGoTo,
@@ -47,7 +47,7 @@ public class EnemyBullet : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Ground"))
         {
-            Instantiate(impactToJump, transform.position, Quaternion.identity);
+            Instantiate(mine, transform.position, Quaternion.identity);
         }
 
         Destroy(gameObject);

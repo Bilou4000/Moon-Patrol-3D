@@ -28,12 +28,7 @@ public class MapScript : MonoBehaviour
         allSmallRocks = GameObject.FindGameObjectsWithTag("SmallRock");
         allMediumRocks = GameObject.FindGameObjectsWithTag("MediumRock");
         time = Time.time;
-        //if(time >= 0 && time < 10)
-        //{
-        //    mapState = (MapState)Random.Range(0, 3);
 
-        //    floorDifficulty = { };
-        //}
         if (time > nextActionTime)
         {
             nextActionTime += period;

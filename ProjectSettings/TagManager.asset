@@ -12,6 +12,8 @@ TagManager:
   - SmallBullet
   - Tank
   - UFO
+  - Enemy
+  - Shield
   layers:
   - Default
   - TransparentFX
