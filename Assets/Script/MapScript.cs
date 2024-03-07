@@ -5,9 +5,18 @@ using UnityEngine;
 
 public class MapScript : MonoBehaviour
 {
-    [SerializeField] private GameObject floor, player, smallRock, mediumRock, largeRock;
-    [SerializeField] private float smallCraterSize, bigCraterSize;
-    [SerializeField] private int smallCraterPercent, bigCraterPercent, smallRockChances,mediumRockChances, largeRockChances;
+    [SerializeField] private GameObject floor, player;
+
+    [Header("Rock")]
+    [SerializeField] private GameObject smallRock;
+    [SerializeField] private GameObject mediumRock, largeRock;
+    [SerializeField] private int smallRockChances, mediumRockChances, largeRockChances;
+
+    [Header("Crater")]
+    [SerializeField] private float smallCraterSize;
+    [SerializeField] private float bigCraterSize;
+    [SerializeField] private int smallCraterPercent, bigCraterPercent;
+
     bool canRock;
     private GameObject[] allFloor, allSmallRocks, allMediumRocks;
     private GameObject lastFloor, oldestFloor;
