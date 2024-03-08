@@ -66,7 +66,7 @@ public class RockScript : MonoBehaviour
             }
             if (collision.gameObject.CompareTag("BigBullet"))
             {
-                Instantiate(mediumRock, new Vector3(transform.position.x + 1.5f,transform.position.y - 0.7f,transform.position.z),transform.rotation );
+                Instantiate(mediumRock, new Vector3(transform.position.x + 1.5f,transform.position.y - 0.7f,transform.position.z),transform.rotation);
                 Instantiate(mediumRock, new Vector3(transform.position.x - 0.8f, transform.position.y - 0.7f, transform.position.z), transform.rotation);
                 Destroy(gameObject);
             }
