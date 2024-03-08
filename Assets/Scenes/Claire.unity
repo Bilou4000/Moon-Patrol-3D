@@ -2028,11 +2028,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floor: {fileID: 7680594961641171239, guid: 67dfec222c681c8469540657c7ee5993, type: 3}
   player: {fileID: 1119525743}
+  craterDifficulty: 1
+  rockDifficulty: 5
   smallRock: {fileID: 2128375153305414178, guid: 81d3b3bfcc5ed7e45978f186100bf3a8, type: 3}
   mediumRock: {fileID: 3560008688028588871, guid: 4ca2ffd8e49ad0449b9105c50c687d19, type: 3}
   largeRock: {fileID: 3788094599947182726, guid: 84d6b76972ca399458366cebf9a114f2, type: 3}
+  noRock: {fileID: 3947932825558900165, guid: db0c8fb77f4fc544d8547c84cbba6b84, type: 3}
   smallRockChances: 20
-  mediumRockChances: 10
+  mediumRockChances: 15
   largeRockChances: 5
   smallCraterSize: 3
   bigCraterSize: 5.1
