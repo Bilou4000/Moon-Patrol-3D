@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/GameOverScreen.unity
+    guid: 3628e6c60efd3844ebf151dbcd8a5287
+  - enabled: 1
+    path: Assets/Scenes/Sibelle.unity
+    guid: 4b7179fb41deb6e47b1f97e1a706f104
   m_configObjects: {}
