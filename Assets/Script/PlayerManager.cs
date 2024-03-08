@@ -47,9 +47,13 @@ public class PlayerManager : MonoBehaviour
             GameManager.instance.GameOver();
         }
 
-        if (transform.position.y < 0)
+        if (transform.position.y < -3)
         {
-            LoseLife(1);
+            lives -= 1;
+            GameManager.instance.UpdateLivesText(lives);
+
+            transform.position = new Vector3(MapScript.instance.GetOldestFloor(), originalY, transform.position.z);
+
         }
 
         if (lives < maxLives && score >= scoreThreshold)
@@ -127,7 +131,7 @@ public class PlayerManager : MonoBehaviour
         transform.position = new Vector3(MapScript.instance.GetOldestFloor(), originalY, transform.position.z);
 
         GetComponent<PlayerMovement>().enabled = true;
-        GetComponent<PlayerShooting>().enabled=true;
+        GetComponent<PlayerShooting>().enabled = true;
 
         buggy.SetActive(true);
         wheel1.SetActive(true);
