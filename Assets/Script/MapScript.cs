@@ -116,11 +116,27 @@ public class MapScript : MonoBehaviour
             increaseDifficulty = !increaseDifficulty;
             if (increaseDifficulty)
             {
-                smallCraterPercent += craterDifficulty;
-                bigCraterPercent += craterDifficulty;
-                smallRockChances += rockDifficulty;
-                mediumRockChances += rockDifficulty;
-                largeRockChances += rockDifficulty;
+                if(smallCraterPercent <= 33)
+                {
+                    smallCraterPercent += craterDifficulty;
+                }
+                if (bigCraterPercent <= 33)
+                {
+                    bigCraterPercent += craterDifficulty;
+                }
+                if (smallRockChances <= 33)
+                {
+                    smallRockChances += rockDifficulty;
+                }
+                if (mediumRockChances <= 33)
+                {
+                    mediumRockChances += rockDifficulty;
+                }
+                if (largeRockChances <= 33)
+                {
+                    largeRockChances += rockDifficulty;
+                }
+
             }
         }
 

@@ -2179,8 +2179,8 @@ MonoBehaviour:
   largeRock: {fileID: 8370367946845122368, guid: 9028940208d622a4588be8db9de225dc, type: 3}
   noRock: {fileID: 3947932825558900165, guid: db0c8fb77f4fc544d8547c84cbba6b84, type: 3}
   smallRockChances: 0
-  mediumRockChances: 0
-  largeRockChances: 100
+  mediumRockChances: 30
+  largeRockChances: 30
   smallCraterSize: 3
   bigCraterSize: 5.1
   smallCraterPercent: 15
