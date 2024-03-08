@@ -174,7 +174,7 @@ public class MapScript : MonoBehaviour
 
     public float GetOldestFloor()
     {
-        return allFloor[0].transform.position.x;
+        return allFloor[3].transform.position.x;
     }
     public enum MapState
     {
