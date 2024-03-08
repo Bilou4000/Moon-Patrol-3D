@@ -20,6 +20,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private float timeOfShield;
     private bool isInvincibile;
 
+    private float originalY;
     private void Awake()
     {
         instance = this;
@@ -27,6 +28,7 @@ public class PlayerManager : MonoBehaviour
 
     private void Start()
     {
+        originalY = transform.position.y;
         maxLives = lives;
         startscoreThreshold = scoreThreshold;
 
@@ -41,6 +43,11 @@ public class PlayerManager : MonoBehaviour
             //gameOver Screen
             Time.timeScale = 0f;
             //Destroy(gameObject);
+        }
+
+        if (transform.position.y < 0)
+        {
+            LoseLife(1);
         }
 
         if (lives < maxLives && score >= scoreThreshold)
@@ -69,6 +76,7 @@ public class PlayerManager : MonoBehaviour
         }
 
         GameManager.instance.UpdateLivesText(lives);
+        transform.position = new Vector3(MapScript.instance.GetOldestFloor(),originalY, transform.position.z);
     }
 
     public void SetScore(float newScore)

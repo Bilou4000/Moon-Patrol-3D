@@ -28,6 +28,11 @@ public class MapScript : MonoBehaviour
     private MapState[] floorDifficulty;
     private float time, nextActionTime, period;
 
+    public static MapScript instance;
+    private void Awake()
+    {
+        instance = this;
+    }
 
     private void Start()
     {
@@ -61,6 +66,7 @@ public class MapScript : MonoBehaviour
     private void NextFloor()
     {
         oldestFloor = allFloor.First();
+        
         RandomFloor();
         if (allFloor.Length < 40)
         {
@@ -166,6 +172,10 @@ public class MapScript : MonoBehaviour
         return noRock;
     }
 
+    public float GetOldestFloor()
+    {
+        return allFloor[0].transform.position.x;
+    }
     public enum MapState
     {
         SmallCrater,
