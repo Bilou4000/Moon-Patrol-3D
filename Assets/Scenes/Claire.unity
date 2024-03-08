@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.13036549, g: 0.094848044, b: 0.12510106, a: 1}
+  m_IndirectSpecularColor: {r: 0.13036436, g: 0.0948469, b: 0.12510028, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3460,7 +3460,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5016694323793214797, guid: b573358af1c8b1d48825be26f1c7108d, type: 3}
       propertyPath: m_Name
-      value: P L A Y E R Variant
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5016694323793214799, guid: b573358af1c8b1d48825be26f1c7108d, type: 3}
       propertyPath: m_Layer
@@ -4626,7 +4626,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000030517578, y: 0.000015258789}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &924859648 stripped
