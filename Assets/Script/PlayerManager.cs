@@ -5,6 +5,9 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager instance;
+    [Header("Player")]
+    [SerializeField] GameObject buggy;
+    [SerializeField] GameObject wheel1, wheel2, wheel3, wheel4, explosionDeath;
 
     [Header("Lives")]
     [SerializeField] private float lives;
@@ -82,7 +85,8 @@ public class PlayerManager : MonoBehaviour
         }
 
         GameManager.instance.UpdateLivesText(lives);
-        transform.position = new Vector3(MapScript.instance.GetOldestFloor(),originalY, transform.position.z);
+        StartCoroutine(Death());
+       
     }
 
     public void SetScore(float newScore)
@@ -99,6 +103,27 @@ public class PlayerManager : MonoBehaviour
         StartCoroutine(shieldCoroutine);
     }
 
+    IEnumerator Death()
+    {
+        Instantiate(explosionDeath, transform.position, transform.rotation);
+        GetComponent<PlayerMovement>().enabled = false;
+        GetComponent<PlayerShooting>().enabled = false;
+        buggy.SetActive(false);
+        wheel1.SetActive(false);
+        wheel2.SetActive(false);
+        wheel3.SetActive(false);
+        wheel4.SetActive(false);
+        yield return new WaitForSeconds(1.5f);
+        Destroy(GameObject.Find("Bomb_Explosion(Clone)"));
+        transform.position = new Vector3(MapScript.instance.GetOldestFloor(), originalY, transform.position.z);
+        GetComponent<PlayerMovement>().enabled = true;
+        GetComponent<PlayerShooting>().enabled=true;
+        buggy.SetActive(true);
+        wheel1.SetActive(true);
+        wheel2.SetActive(true);
+        wheel3.SetActive(true);
+        wheel4.SetActive(true);
+    }
     private IEnumerator Invicible(float time)
     {
         isInvincibile = true;

@@ -80,7 +80,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        transform.position += transform.right * moveSpeed * Time.deltaTime;
+        transform.position -= transform.right * moveSpeed * Time.deltaTime;
         mainCamera.transform.localPosition = Vector3.Lerp(mainCamera.transform.localPosition, mainCameraPos, cameraTravelSpeed * Time.deltaTime);
 
         if (moveVector.x > 0)

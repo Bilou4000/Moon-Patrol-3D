@@ -30,7 +30,7 @@ public class PlayerShooting : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.Mouse0) && !GameObject.Find("Big Bullet(Clone)"))
         {
-            Instantiate(bigBullet, gameObject.transform.position + new Vector3(1,0,0), Quaternion.Euler(0,0,90));
+            Instantiate(bigBullet, transform.position + new Vector3(1,0.5f,0), Quaternion.Euler(0,0,90));
         }
 
         if (Input.GetKeyUp(KeyCode.Mouse1))
