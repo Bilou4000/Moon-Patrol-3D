@@ -5,10 +5,7 @@ using UnityEngine;
 
 public class MapScript : MonoBehaviour
 {
-    [SerializeField] private GameObject floor, player, terrain;
-    [SerializeField] private float terrainOffset, playerTerrainOffset;
-    private GameObject[] allTerrains;
-    private float actualterrainOffset;
+    [SerializeField] private GameObject floor, player;
 
     [Header("Difficulty Modifier")]
     [SerializeField] int craterDifficulty;
@@ -35,29 +32,16 @@ public class MapScript : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        actualterrainOffset = 409;
     }
 
     private void Start()
     {
         period = 10;
-        Instantiate(terrain, new Vector3(409, -9, 9), Quaternion.identity);
-        actualterrainOffset += terrainOffset;
     }
 
     private void Update()
     {
         allFloor = GameObject.FindGameObjectsWithTag("Ground");
-        allTerrains = GameObject.FindGameObjectsWithTag("Terrain");
-
-        if(player.transform.position.x > (allTerrains.Last().transform.position.x) + playerTerrainOffset)
-        {
-            Instantiate(terrain, new Vector3(actualterrainOffset, -9, 9), Quaternion.identity);
-            actualterrainOffset += terrainOffset;
-
-            Destroy(allTerrains[0]);
-        }
-
         time = Time.time;
 
         if (time > nextActionTime)

@@ -1294,7 +1294,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -36, y: 81}
+  m_AnchoredPosition: {x: -36, y: 65.99999}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &608935247
@@ -2620,7 +2620,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5016694323793502573, guid: b573358af1c8b1d48825be26f1c7108d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.7
       objectReference: {fileID: 0}
     - target: {fileID: 5016694323793502573, guid: b573358af1c8b1d48825be26f1c7108d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2746,7 +2746,7 @@ GameObject:
   - component: {fileID: 803823867}
   m_Layer: 0
   m_Name: T E R R A I N
-  m_TagString: Terrain
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -5153,7 +5153,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 34, y: 81}
+  m_AnchoredPosition: {x: 34, y: 66}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1819001290
@@ -5376,9 +5376,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floor: {fileID: 307160993823483933, guid: b5b722e13de7ea54ba61128e6ea70653, type: 3}
   player: {fileID: 1676042337}
-  terrain: {fileID: 803823866}
-  terrainOffset: 809
-  playerTerrainOffset: 310
   craterDifficulty: 1
   rockDifficulty: 5
   smallRock: {fileID: 788176093495198116, guid: a5b3c5d094ed2d047b108798b4eb1d4b, type: 3}
