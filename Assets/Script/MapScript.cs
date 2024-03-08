@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class MapScript : MonoBehaviour
 {
-    [SerializeField] private GameObject floor, player;
+    [SerializeField] private GameObject floor, terrain, player;
 
     [Header("Difficulty Modifier")]
     [SerializeField] int craterDifficulty;
@@ -73,8 +73,6 @@ public class MapScript : MonoBehaviour
 
             if (mapState == MapState.NoCrater)
             {
-                
-
                 lastFloor = allFloor.Last();
                 
                 MeshRenderer renderer = lastFloor.GetComponent<MeshRenderer>();
