@@ -29,6 +29,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float flashInterval;
     [SerializeField] private GameObject Ekey, TriangleKey, shieldImage;
 
+    [Header("Others")]
+    [SerializeField]GameObject dustTrail;
+    Vector4 dustColor;
+   
+
     private MoonPatrolInput input = null;
     private Rigidbody rb = null;
     private bool hasShield;
@@ -43,6 +48,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+       
+        dustColor = dustTrail.GetComponent<ParticleSystem>().startColor;
         mainCamera = Camera.main;
         mainCameraPos = mainCamera.transform.localPosition;
         cameraStartXPos = mainCameraPos.x;
@@ -112,6 +119,15 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.AddForce(Vector3.up * counterJumpForce, ForceMode.Impulse);
         }
+
+        if (isGrounded)
+        {
+            dustTrail.GetComponent<ParticleSystem>().startColor = dustColor;
+        }
+        else
+        {
+            dustTrail.GetComponent<ParticleSystem>().startColor = new Vector4(221, 168, 134, 0.0f);
+        }
     }
 
     private void OnMovementPerformed(InputAction.CallbackContext value)
@@ -153,6 +169,7 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
+            
         }
     }
 
@@ -161,6 +178,7 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
+
         }
 
         if (collision.gameObject.CompareTag("Shield"))
@@ -189,6 +207,7 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = false;
+            
         }
     }
 
