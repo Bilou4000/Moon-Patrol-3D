@@ -152,12 +152,17 @@ public class PlayerManager : MonoBehaviour
         if (hasShield)
         {
             shield.GetComponent<ParticleSystem>().Play();
+
+            yield return new WaitForSeconds(1);
+            shield.GetComponent<ParticleSystem>().Stop();
         }
 
         isInvincibile = false;
         Physics.IgnoreLayerCollision(4, 6, false);
         Physics.IgnoreLayerCollision(4, 7, false);
-        shield.GetComponent<ParticleSystem>().Stop();
+
+
+
     }
 
     private IEnumerator CreateShield()
