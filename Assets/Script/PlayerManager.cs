@@ -83,6 +83,7 @@ public class PlayerManager : MonoBehaviour
 
         GameManager.instance.UpdateLivesText(lives);
         transform.position = new Vector3(MapScript.instance.GetOldestFloor(),originalY, transform.position.z);
+        gameObject.GetComponent<MeshRenderer>().material.color = Color.white;
     }
 
     public void SetScore(float newScore)
