@@ -15,20 +15,26 @@ public class GameManager : MonoBehaviour
 
     [Header("Diificulty")]
     [SerializeField] private float waitTimeBeforeUFODifficulty;
-    [SerializeField] private float waitTimeBeforeTankDifficulty;
+    [SerializeField] private float waitTimeBeforeTankDifficulty, waitTimeBeforeShieldDifficulty, timeToDecrease;
 
-    private float timeBeforeDifficultyUFOIncrease, timeBeforeDifficultyTankIncrease;
+    private float timeBeforeDifficultyUFOIncrease, timeBeforeDifficultyTankIncrease, timeBeforeDifficultyShieldIncrease;
 
     [Header("UFO")]
     [SerializeField] private GameObject UFO;
-    [SerializeField] private float maxUFO, timeBetweenUFO, minTimeBetweenUFO, timeToDecrease;
+    [SerializeField] private float maxUFO, timeBetweenUFO, minTimeBetweenUFO;
+    private GameObject[] allUFO;
 
     [Header("Tank")]
     [SerializeField] private GameObject Tank;
-    [SerializeField] private float timeBetweenTank, minTimeBetweenTank, tankTimeToDecrease;
-
-    private GameObject[] allUFO;
+    [SerializeField] private float timeBetweenTank, minTimeBetweenTank;
     private GameObject newTank;
+
+    [Header("Shield")]
+    [SerializeField] private GameObject Shield;
+    [SerializeField] private float timeBetweenShield, minTimeBetweenShield;
+    private GameObject[] allShield;
+    private GameObject newShield;
+
     private Transform thePlayer;
     private Vector3 posToAppear;
     private float sideOfScreen;
@@ -42,16 +48,21 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         thePlayer = PlayerMovement.instance.transform;
+
         timeBeforeDifficultyUFOIncrease = waitTimeBeforeUFODifficulty;
+        timeBeforeDifficultyTankIncrease = waitTimeBeforeTankDifficulty;
+        timeBeforeDifficultyShieldIncrease = waitTimeBeforeShieldDifficulty;
 
         Invoke("UFOInstantiate", timeBetweenUFO);
         Invoke("TankInstantiate", timeBetweenTank);
+        Invoke("ShieldInstantiate", timeBetweenShield);
     }
 
 
     private void Update()
     {
         allUFO = GameObject.FindGameObjectsWithTag("UFO");
+        allShield = GameObject.FindGameObjectsWithTag("Shield");
 
         actualTime = Time.time;
 
@@ -64,7 +75,13 @@ public class GameManager : MonoBehaviour
         if(actualTime > waitTimeBeforeTankDifficulty && timeBetweenTank > minTimeBetweenTank)
         {
             waitTimeBeforeTankDifficulty += timeBeforeDifficultyTankIncrease;
-            timeBetweenTank -= tankTimeToDecrease;
+            timeBetweenTank -= timeToDecrease;
+        }
+
+        if (actualTime > waitTimeBeforeShieldDifficulty && timeBetweenShield > minTimeBetweenShield)
+        {
+            waitTimeBeforeShieldDifficulty += timeBeforeDifficultyShieldIncrease;
+            timeBetweenShield -= timeToDecrease;
         }
     }
 
@@ -103,6 +120,23 @@ public class GameManager : MonoBehaviour
         Destroy(newTank, minTimeBetweenTank);
 
         Invoke("TankInstantiate", timeBetweenTank);
+    }
+
+    private void ShieldInstantiate()
+    {
+        posToAppear = new Vector3(thePlayer.position.x + outOfScreenDistance, 0.9f, 0);
+
+        if(allShield.Length <= 0)
+        {
+            newShield = Instantiate(Shield, posToAppear, transform.rotation);
+        }
+
+        if(newShield != null)
+        {
+            Destroy(newShield, minTimeBetweenTank);
+        }
+
+        Invoke("ShieldInstantiate", timeBetweenShield);
     }
 
     public void UpdateScoreText(float score)

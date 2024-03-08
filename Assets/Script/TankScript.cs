@@ -21,6 +21,7 @@ public class TankScript : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             PlayerManager.instance.LoseLife(1);
+            Destroy(gameObject);
         }
 
         if (collision.gameObject.CompareTag("BigBullet"))

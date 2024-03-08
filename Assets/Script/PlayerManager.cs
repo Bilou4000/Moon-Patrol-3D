@@ -19,6 +19,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private float timeAfterBingHit;
     [SerializeField] private float timeOfShield;
     private bool isInvincibile;
+    private IEnumerator damageCoroutine = null;
 
     private float originalY;
     private void Awake()
@@ -72,7 +73,8 @@ public class PlayerManager : MonoBehaviour
         if(!isInvincibile)
         {
             lives -= damage;
-            StartCoroutine(Invicible(timeAfterBingHit));
+            damageCoroutine = Invicible(timeAfterBingHit);
+            StartCoroutine(damageCoroutine);
         }
 
         GameManager.instance.UpdateLivesText(lives);
@@ -87,6 +89,7 @@ public class PlayerManager : MonoBehaviour
 
     public void ShieldPickUp()
     {
+        StopCoroutine(damageCoroutine);
         StartCoroutine(Invicible(timeOfShield));
     }
 
