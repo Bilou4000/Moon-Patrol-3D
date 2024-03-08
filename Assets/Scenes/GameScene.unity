@@ -1115,6 +1115,10 @@ MonoBehaviour:
   maxHold: 0.04
   cameraOffset: 2
   cameraTravelSpeed: 0
+  flashInterval: 0
+  Ekey: {fileID: 0}
+  TriangleKey: {fileID: 0}
+  shieldImage: {fileID: 0}
 --- !u!114 &1119525752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1761,10 +1765,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.033830546
+  m_Radius: 0.03025719
   m_Height: 0.07808838
   m_Direction: 2
-  m_Center: {x: -0.021674592, y: 0.003870879, z: -0.034733355}
+  m_Center: {x: -0.022911422, y: 0.012709166, z: -0.034733355}
 --- !u!114 &1760354508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1859,6 +1863,14 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 0e020d48-a1f9-4a33-80b8-a1bd00ab911f
     m_ActionName: Player/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e404ddd9-ea58-4a37-bc9f-9e456a8afdee
+    m_ActionName: Player/FireDown[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a11a8279-d6e0-4a44-9314-60312b311fdb
+    m_ActionName: Player/Shield[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -1885,6 +1897,10 @@ MonoBehaviour:
   maxHold: 0.04
   cameraOffset: 2
   cameraTravelSpeed: 0
+  flashInterval: 0
+  Ekey: {fileID: 0}
+  TriangleKey: {fileID: 0}
+  shieldImage: {fileID: 0}
 --- !u!114 &1760354511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1983,15 +1999,18 @@ MonoBehaviour:
   outOfScreenDistance: 0
   waitTimeBeforeUFODifficulty: 0
   waitTimeBeforeTankDifficulty: 0
+  waitTimeBeforeShieldDifficulty: 0
+  timeToDecrease: 0
   UFO: {fileID: 7145238492098584821, guid: 01eca4c9c8bffff4899074cb86e0b6f6, type: 3}
   maxUFO: 2
   timeBetweenUFO: 0
   minTimeBetweenUFO: 0
-  timeToDecrease: 0
   Tank: {fileID: 0}
   timeBetweenTank: 0
   minTimeBetweenTank: 0
-  tankTimeToDecrease: 0
+  Shield: {fileID: 0}
+  timeBetweenShield: 0
+  minTimeBetweenShield: 0
 --- !u!114 &1926220472
 MonoBehaviour:
   m_ObjectHideFlags: 0
