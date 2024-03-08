@@ -75,6 +75,7 @@ public class PlayerManager : MonoBehaviour
     {
         if(!isInvincibile)
         {
+            //gameObject.GetComponent<MeshRenderer>().material.color = Color.white;
             lives -= damage;
             damageCoroutine = Invicible(timeAfterBingHit);
             StartCoroutine(damageCoroutine);
@@ -100,18 +101,25 @@ public class PlayerManager : MonoBehaviour
     IEnumerator Death()
     {
         Instantiate(explosionDeath, transform.position, transform.rotation);
+
         GetComponent<PlayerMovement>().enabled = false;
         GetComponent<PlayerShooting>().enabled = false;
+
         buggy.SetActive(false);
         wheel1.SetActive(false);
         wheel2.SetActive(false);
         wheel3.SetActive(false);
         wheel4.SetActive(false);
+
         yield return new WaitForSeconds(1.5f);
+
         Destroy(GameObject.Find("Bomb_Explosion(Clone)"));
+
         transform.position = new Vector3(MapScript.instance.GetOldestFloor(), originalY, transform.position.z);
+
         GetComponent<PlayerMovement>().enabled = true;
         GetComponent<PlayerShooting>().enabled=true;
+
         buggy.SetActive(true);
         wheel1.SetActive(true);
         wheel2.SetActive(true);
@@ -121,10 +129,10 @@ public class PlayerManager : MonoBehaviour
     private IEnumerator Invicible(float time)
     {
         isInvincibile = true;
-        gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
+        //gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
         yield return new WaitForSeconds(time);
 
-        gameObject.GetComponent<MeshRenderer>().material.color = Color.white;
+        //gameObject.GetComponent<MeshRenderer>().material.color = Color.white;
         isInvincibile = false;
     }
 

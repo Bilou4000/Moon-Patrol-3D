@@ -48,11 +48,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-       
-        dustColor = dustTrail.GetComponent<ParticleSystem>().startColor;
         mainCamera = Camera.main;
         mainCameraPos = mainCamera.transform.localPosition;
+
+
         cameraStartXPos = mainCameraPos.x;
+
+        dustColor = dustTrail.GetComponent<ParticleSystem>().startColor;
 
         Ekey.SetActive(false);
         TriangleKey.SetActive(false);
@@ -94,7 +96,7 @@ public class PlayerMovement : MonoBehaviour
         {
             moveSpeed = maxSpeed;
 
-            mainCameraPos = new Vector3(cameraStartXPos - cameraOffset, mainCameraPos.y, mainCameraPos.z);
+            mainCameraPos = new Vector3(cameraStartXPos + cameraOffset, mainCameraPos.y, mainCameraPos.z);
 
 
         }
@@ -102,7 +104,7 @@ public class PlayerMovement : MonoBehaviour
         {
             moveSpeed = minusSpeed;
 
-            mainCameraPos = new Vector3(cameraStartXPos + cameraOffset, mainCameraPos.y, mainCameraPos.z);
+            mainCameraPos = new Vector3(cameraStartXPos - cameraOffset, mainCameraPos.y, mainCameraPos.z);
         }
         else
         {
