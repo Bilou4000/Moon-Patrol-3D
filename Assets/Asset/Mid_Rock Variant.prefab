@@ -13,6 +13,10 @@ PrefabInstance:
       value: Mid_Rock Variant
       objectReference: {fileID: 0}
     - target: {fileID: 180918, guid: 4fd85412d5d49484faf3fb17d44eea6e, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 180918, guid: 4fd85412d5d49484faf3fb17d44eea6e, type: 3}
       propertyPath: m_TagString
       value: MediumRock
       objectReference: {fileID: 0}

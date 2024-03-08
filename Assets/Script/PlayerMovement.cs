@@ -191,14 +191,7 @@ public class PlayerMovement : MonoBehaviour
                 hasShield = true;
                 shieldImage.SetActive(true);
 
-                if (Gamepad.current != null)
-                {
-                    StartCoroutine(FlashingInput(true));
-                }
-                else
-                {
-                    StartCoroutine(FlashingInput(false));
-                }
+                StartCoroutine(FlashingInput(false));
 
             }
             Destroy(collision.gameObject);

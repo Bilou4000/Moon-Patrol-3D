@@ -104,7 +104,7 @@ public class PlayerManager : MonoBehaviour
 
     public void ShieldPickUp()
     {
-        StopCoroutine(damageCoroutine);
+        //StopCoroutine(damageCoroutine);
 
         shield.GetComponent<ParticleSystem>().Play();
         StartCoroutine(Invicible(timeOfShield));
@@ -145,6 +145,8 @@ public class PlayerManager : MonoBehaviour
     private IEnumerator Invicible(float time)
     {
         isInvincibile = true;
+        Physics.IgnoreLayerCollision(4, 6, true);
+        Physics.IgnoreLayerCollision(4, 7, true);
         yield return new WaitForSeconds(time);
 
         if (hasShield)
@@ -153,6 +155,9 @@ public class PlayerManager : MonoBehaviour
         }
 
         isInvincibile = false;
+        Physics.IgnoreLayerCollision(4, 6, false);
+        Physics.IgnoreLayerCollision(4, 7, false);
+        shield.GetComponent<ParticleSystem>().Stop();
     }
 
     private IEnumerator CreateShield()
