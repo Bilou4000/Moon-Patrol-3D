@@ -14,6 +14,7 @@ TagManager:
   - UFO
   - Enemy
   - Shield
+  - Terrain
   layers:
   - Default
   - TransparentFX
