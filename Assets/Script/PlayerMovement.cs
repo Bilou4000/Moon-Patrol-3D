@@ -62,6 +62,7 @@ public class PlayerMovement : MonoBehaviour
         input.Player.Jump.canceled += OnJumpCancelled;
 
         input.Player.Shield.performed += OnShieldPerformed;
+        input.Player.Shield.canceled += OnShieldCancelled;
     }
 
     private void OnDisable()
@@ -74,6 +75,7 @@ public class PlayerMovement : MonoBehaviour
         input.Player.Jump.canceled -= OnJumpCancelled;
 
         input.Player.Shield.performed -= OnShieldPerformed;
+        input.Player.Shield.canceled -= OnShieldCancelled;
     }
 
     private void FixedUpdate()
@@ -140,12 +142,19 @@ public class PlayerMovement : MonoBehaviour
         if (hasShield)
         {
             PlayerManager.instance.ShieldPickUp();
-        }
 
-        hasShield = false;
-        Ekey.SetActive(false);
-        TriangleKey.SetActive(false);
-        shieldImage.SetActive(false);
+            Ekey.SetActive(false);
+            TriangleKey.SetActive(false);
+            shieldImage.SetActive(false);
+        }
+    }
+
+    private void OnShieldCancelled(InputAction.CallbackContext value)
+    {
+        if (hasShield)
+        {
+            hasShield = false;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
