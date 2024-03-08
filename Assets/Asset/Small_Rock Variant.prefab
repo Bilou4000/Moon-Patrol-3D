@@ -13,10 +13,6 @@ PrefabInstance:
       value: Small_Rock Variant
       objectReference: {fileID: 0}
     - target: {fileID: 114764, guid: ddbca5453b26e0149adb083cd30a0e7d, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 114764, guid: ddbca5453b26e0149adb083cd30a0e7d, type: 3}
       propertyPath: m_TagString
       value: SmallRock
       objectReference: {fileID: 0}

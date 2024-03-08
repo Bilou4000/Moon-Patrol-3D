@@ -13,10 +13,6 @@ PrefabInstance:
       value: Large_Rock Variant
       objectReference: {fileID: 0}
     - target: {fileID: 133320, guid: 197516cbd53895c4a884a452291fd503, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 133320, guid: 197516cbd53895c4a884a452291fd503, type: 3}
       propertyPath: m_TagString
       value: LargeRock
       objectReference: {fileID: 0}
