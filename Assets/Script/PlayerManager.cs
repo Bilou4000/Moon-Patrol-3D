@@ -21,7 +21,7 @@ public class PlayerManager : MonoBehaviour
     [Header("Invicible")]
     [SerializeField] private GameObject shield;
     [SerializeField] private float timeAfterBingHit, timeOfShield;
-    private bool isInvincibile;
+    private bool isInvincibile, hasShield;
     private IEnumerator damageCoroutine = null;
 
     private float originalY;
@@ -147,12 +147,17 @@ public class PlayerManager : MonoBehaviour
         isInvincibile = true;
         yield return new WaitForSeconds(time);
 
-        //shield.GetComponent<ParticleSystem>().Play();
+        if (hasShield)
+        {
+            shield.GetComponent<ParticleSystem>().Play();
+        }
+
         isInvincibile = false;
     }
 
     private IEnumerator CreateShield()
     {
+        hasShield = true;
         yield return new WaitForSeconds(3.1f);
         shield.GetComponent<ParticleSystem>().Pause();
     }
