@@ -203,7 +203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8130787005aa3f54d9b07f59d9d3a133, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mine: {fileID: 2605212271535159239, guid: bed8eeebe3302254aabb166d27c88672, type: 3}
+  mine: {fileID: 3128911364818245543, guid: f338ee92e096abe488728cdd10639279, type: 3}
   bulletSpeed: 2
   positionOfMine: 7
 --- !u!54 &8522632977881701548
