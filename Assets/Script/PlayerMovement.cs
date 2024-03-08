@@ -29,6 +29,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float flashInterval;
     [SerializeField] private GameObject Ekey, TriangleKey, shieldImage;
 
+    [Header("Others")]
+    [SerializeField]GameObject dustTrail;
+    Vector4 dustColor;
+   
+
     private MoonPatrolInput input = null;
     private Rigidbody rb = null;
     private bool hasShield;
@@ -43,6 +48,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+       
+        dustColor = dustTrail.GetComponent<ParticleSystem>().startColor;
         mainCamera = Camera.main;
         mainCameraPos = mainCamera.transform.localPosition;
         cameraStartXPos = mainCameraPos.x;
@@ -80,7 +87,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        transform.position += transform.right * moveSpeed * Time.deltaTime;
+        transform.position -= transform.right * moveSpeed * Time.deltaTime;
         mainCamera.transform.localPosition = Vector3.Lerp(mainCamera.transform.localPosition, mainCameraPos, cameraTravelSpeed * Time.deltaTime);
 
         if (moveVector.x > 0)
@@ -113,6 +120,15 @@ public class PlayerMovement : MonoBehaviour
         if(rb.velocity.y < 0)
         {
             rb.AddForce(Vector3.up * counterJumpForce, ForceMode.Impulse);
+        }
+
+        if (isGrounded)
+        {
+            dustTrail.GetComponent<ParticleSystem>().startColor = dustColor;
+        }
+        else
+        {
+            dustTrail.GetComponent<ParticleSystem>().startColor = new Vector4(221, 168, 134, 0.0f);
         }
     }
 
@@ -162,6 +178,7 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
+            
         }
     }
 
@@ -170,6 +187,7 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
+
         }
 
         if (collision.gameObject.CompareTag("Shield"))
@@ -198,6 +216,7 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = false;
+            
         }
     }
 
