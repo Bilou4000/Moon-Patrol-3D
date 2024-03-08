@@ -19,9 +19,9 @@ public class PlayerManager : MonoBehaviour
     private float startscoreThreshold;
 
     [Header("Invicible")]
-    [SerializeField] private float timeAfterBingHit;
-    [SerializeField] private float timeOfShield;
-    private bool isInvincibile;
+    [SerializeField] private GameObject shield;
+    [SerializeField] private float timeAfterBingHit, timeOfShield;
+    private bool isInvincibile, hasShield;
     private IEnumerator damageCoroutine = null;
 
     private float originalY;
@@ -51,8 +51,9 @@ public class PlayerManager : MonoBehaviour
         {
             lives -= 1;
             GameManager.instance.UpdateLivesText(lives);
-
+            StartCoroutine(onImpact());
             transform.position = new Vector3(MapScript.instance.GetOldestFloor(), originalY, transform.position.z);
+
 
         }
 
@@ -88,6 +89,7 @@ public class PlayerManager : MonoBehaviour
         {
             lives -= damage;
             damageCoroutine = Invicible(timeAfterBingHit);
+            StartCoroutine(onImpact());
             StartCoroutine(damageCoroutine);
         }
 
@@ -104,8 +106,14 @@ public class PlayerManager : MonoBehaviour
 
     public void ShieldPickUp()
     {
-        StopCoroutine(damageCoroutine);
+        if(damageCoroutine != null)
+        {
+            StopCoroutine(damageCoroutine);
+        }
+
+        shield.GetComponent<ParticleSystem>().Play();
         StartCoroutine(Invicible(timeOfShield));
+        StartCoroutine(CreateShield());
     }
 
     IEnumerator Death()
@@ -142,11 +150,37 @@ public class PlayerManager : MonoBehaviour
     private IEnumerator Invicible(float time)
     {
         isInvincibile = true;
-        //gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
+        Physics.IgnoreLayerCollision(4, 6, true);
+        Physics.IgnoreLayerCollision(4, 7, true);
+
         yield return new WaitForSeconds(time);
 
-        //gameObject.GetComponent<MeshRenderer>().material.color = Color.white;
+        if (hasShield)
+        {
+            shield.GetComponent<ParticleSystem>().Play();
+
+            yield return new WaitForSeconds(1);
+            shield.GetComponent<ParticleSystem>().Stop();
+            hasShield = false;
+        }
+
         isInvincibile = false;
+        Physics.IgnoreLayerCollision(4, 6, false);
+        Physics.IgnoreLayerCollision(4, 7, false);
+    }
+
+    private IEnumerator CreateShield()
+    {
+        hasShield = true;
+        yield return new WaitForSeconds(3.1f);
+        shield.GetComponent<ParticleSystem>().Pause();
+    }
+
+    private IEnumerator onImpact()
+    {
+        buggy.GetComponent<MeshRenderer>().material.color = Color.red;
+        yield return new WaitForSeconds(1);
+        buggy.GetComponent<MeshRenderer>().material.color = Color.white;
     }
 
 

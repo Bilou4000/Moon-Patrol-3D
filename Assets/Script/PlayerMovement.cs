@@ -69,9 +69,6 @@ public class PlayerMovement : MonoBehaviour
 
         input.Player.Jump.performed += OnJumpPerformed;
         input.Player.Jump.canceled += OnJumpCancelled;
-
-        input.Player.Shield.performed += OnShieldPerformed;
-        input.Player.Shield.canceled += OnShieldCancelled;
     }
 
     private void OnDisable()
@@ -82,10 +79,25 @@ public class PlayerMovement : MonoBehaviour
 
         input.Player.Jump.performed -= OnJumpPerformed;
         input.Player.Jump.canceled -= OnJumpCancelled;
-
-        input.Player.Shield.performed -= OnShieldPerformed;
-        input.Player.Shield.canceled -= OnShieldCancelled;
     }
+
+    private void Update()
+    {
+        if (hasShield)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                Ekey.SetActive(false);
+                TriangleKey.SetActive(false);
+                shieldImage.SetActive(false);
+                hasShield = false;
+
+                PlayerManager.instance.ShieldPickUp();
+
+            }
+        }
+    }
+
 
     private void FixedUpdate()
     {
@@ -155,26 +167,6 @@ public class PlayerMovement : MonoBehaviour
         holdTimer = 0;
     }
 
-    private void OnShieldPerformed(InputAction.CallbackContext value)
-    {
-        if (hasShield)
-        {
-            PlayerManager.instance.ShieldPickUp();
-
-            Ekey.SetActive(false);
-            TriangleKey.SetActive(false);
-            shieldImage.SetActive(false);
-        }
-    }
-
-    private void OnShieldCancelled(InputAction.CallbackContext value)
-    {
-        if (hasShield)
-        {
-            hasShield = false;
-        }
-    }
-
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
@@ -199,14 +191,7 @@ public class PlayerMovement : MonoBehaviour
                 hasShield = true;
                 shieldImage.SetActive(true);
 
-                if (Gamepad.current != null)
-                {
-                    StartCoroutine(FlashingInput(true));
-                }
-                else
-                {
-                    StartCoroutine(FlashingInput(false));
-                }
+                StartCoroutine(FlashingInput(false));
 
             }
             Destroy(collision.gameObject);
