@@ -108,7 +108,12 @@ public class PlayerManager : MonoBehaviour
 
     IEnumerator Death()
     {
-        Instantiate(explosionDeath, transform.position, transform.rotation);
+        if(!GameObject.Find("Bomb_Explosion(Clone)"))
+        {
+            Instantiate(explosionDeath, transform.position, transform.rotation);
+        }
+
+        
         GetComponent<PlayerMovement>().enabled = false;
         GetComponent<PlayerShooting>().enabled = false;
         buggy.SetActive(false);
