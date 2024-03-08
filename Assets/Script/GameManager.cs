@@ -1,8 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
-using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 
@@ -103,7 +100,7 @@ public class GameManager : MonoBehaviour
 
         if(sideOfScreen == 0)
         {
-            posToAppear = new Vector3(thePlayer.position.x + outOfScreenDistance, 0.9f, 0);
+            posToAppear = new Vector3(thePlayer.position.x + outOfScreenDistance * 2, 0.9f, 0);
             spawningFromRight = true;
         }
         else

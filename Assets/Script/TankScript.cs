@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TankScript : MonoBehaviour
@@ -13,7 +11,15 @@ public class TankScript : MonoBehaviour
 
     private void Update()
     {
-        transform.position += transform.forward * speed * PlayerMovement.instance.GetMoveSpeed() * Time.deltaTime;
+        if(transform.position.x < PlayerMovement.instance.transform.position.x)
+        {
+            transform.position += transform.forward * speed * 1.5f * Time.deltaTime;
+        }
+        else
+        {
+            transform.position += transform.forward * speed * Time.deltaTime;
+        }
+
     }
 
     private void OnCollisionEnter(Collision collision)

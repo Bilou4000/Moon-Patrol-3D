@@ -12,6 +12,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mine_Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 119916, guid: 3a73e26f88957b343af0490c9403c8f0, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 119916, guid: 3a73e26f88957b343af0490c9403c8f0, type: 3}
+      propertyPath: m_TagString
+      value: Mine
+      objectReference: {fileID: 0}
     - target: {fileID: 491850, guid: 3a73e26f88957b343af0490c9403c8f0, type: 3}
       propertyPath: m_LocalScale.x
       value: 3
