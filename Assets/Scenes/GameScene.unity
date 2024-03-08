@@ -783,6 +783,31 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &913668857 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5016694323793214787, guid: b573358af1c8b1d48825be26f1c7108d, type: 3}
+  m_PrefabInstance: {fileID: 1760354505}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &913668858 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5016694323793214785, guid: b573358af1c8b1d48825be26f1c7108d, type: 3}
+  m_PrefabInstance: {fileID: 1760354505}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &913668859 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5016694323793214791, guid: b573358af1c8b1d48825be26f1c7108d, type: 3}
+  m_PrefabInstance: {fileID: 1760354505}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &913668860 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5016694323793214789, guid: b573358af1c8b1d48825be26f1c7108d, type: 3}
+  m_PrefabInstance: {fileID: 1760354505}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &913668861 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5016694323793214799, guid: b573358af1c8b1d48825be26f1c7108d, type: 3}
+  m_PrefabInstance: {fileID: 1760354505}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1147,6 +1172,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89c182789d575834e897f775a54d9654, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buggy: {fileID: 0}
+  wheel1: {fileID: 0}
+  wheel2: {fileID: 0}
+  wheel3: {fileID: 0}
+  wheel4: {fileID: 0}
   lives: 4
   score: 0
   scoreThreshold: 1000
@@ -1809,6 +1839,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89c182789d575834e897f775a54d9654, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buggy: {fileID: 913668861}
+  wheel1: {fileID: 913668860}
+  wheel2: {fileID: 913668859}
+  wheel3: {fileID: 913668858}
+  wheel4: {fileID: 913668857}
   lives: 4
   score: 0
   scoreThreshold: 1000
