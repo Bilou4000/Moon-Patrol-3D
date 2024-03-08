@@ -47,7 +47,7 @@ public class EnemyBullet : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Ground"))
         {
-            Instantiate(mine, transform.position, Quaternion.identity);
+            Instantiate(mine, transform.position + new Vector3(0,-0.2f,0), Quaternion.identity);
         }
 
         Destroy(gameObject);

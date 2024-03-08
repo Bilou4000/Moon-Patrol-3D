@@ -14,32 +14,38 @@ public class GameManager : MonoBehaviour
     private float actualTime;
 
     [Header("Diificulty")]
-    [SerializeField] private float waitTimeBeforeDifficulty;
-    private float timeBeforeDifficultyIncrease;
+    [SerializeField] private float waitTimeBeforeUFODifficulty;
+    [SerializeField] private float waitTimeBeforeTankDifficulty;
+
+    private float timeBeforeDifficultyUFOIncrease, timeBeforeDifficultyTankIncrease;
 
     [Header("UFO")]
     [SerializeField] private GameObject UFO;
     [SerializeField] private float maxUFO, timeBetweenUFO, minTimeBetweenUFO, timeToDecrease;
 
+    [Header("Tank")]
+    [SerializeField] private GameObject Tank;
+    [SerializeField] private float timeBetweenTank, minTimeBetweenTank, tankTimeToDecrease;
+
     private GameObject[] allUFO;
+    private GameObject newTank;
     private Transform thePlayer;
     private Vector3 posToAppear;
-    private bool canSendUFO;
     private float sideOfScreen;
 
 
     private void Awake()
     {
         instance = this;
-        canSendUFO = true;
     }
 
     private void Start()
     {
         thePlayer = PlayerMovement.instance.transform;
-        timeBeforeDifficultyIncrease = waitTimeBeforeDifficulty;
+        timeBeforeDifficultyUFOIncrease = waitTimeBeforeUFODifficulty;
 
         Invoke("UFOInstantiate", timeBetweenUFO);
+        Invoke("TankInstantiate", timeBetweenTank);
     }
 
 
@@ -49,10 +55,16 @@ public class GameManager : MonoBehaviour
 
         actualTime = Time.time;
 
-        if(actualTime > waitTimeBeforeDifficulty && timeBetweenUFO > minTimeBetweenUFO)
+        if(actualTime > waitTimeBeforeUFODifficulty && timeBetweenUFO > minTimeBetweenUFO)
         {
-            waitTimeBeforeDifficulty += timeBeforeDifficultyIncrease;
+            waitTimeBeforeUFODifficulty += timeBeforeDifficultyUFOIncrease;
             timeBetweenUFO -= timeToDecrease;
+        }
+
+        if(actualTime > waitTimeBeforeTankDifficulty && timeBetweenTank > minTimeBetweenTank)
+        {
+            waitTimeBeforeTankDifficulty += timeBeforeDifficultyTankIncrease;
+            timeBetweenTank -= tankTimeToDecrease;
         }
     }
 
@@ -62,11 +74,11 @@ public class GameManager : MonoBehaviour
 
         if(sideOfScreen == 0)
         {
-            posToAppear = new Vector3(thePlayer.position.x + outOfScreenDistance, 1.5f, 0);
+            posToAppear = new Vector3(thePlayer.position.x + outOfScreenDistance, 0.9f, 0);
         }
         else
         {
-            posToAppear = new Vector3(thePlayer.position.x - outOfScreenDistance, 1.5f, 0);
+            posToAppear = new Vector3(thePlayer.position.x - outOfScreenDistance, 0.9f, 0);
         }
     }
 
@@ -75,12 +87,22 @@ public class GameManager : MonoBehaviour
     {
         ChooseSideOfScreen();
 
-        if (canSendUFO && allUFO.Length < maxUFO)
+        if (allUFO.Length < maxUFO)
         {
             Instantiate(UFO, posToAppear, transform.rotation);
         }
 
         Invoke("UFOInstantiate", timeBetweenUFO);
+    }
+
+    private void TankInstantiate()
+    {
+        ChooseSideOfScreen();
+
+        newTank = Instantiate(Tank, posToAppear, transform.rotation);
+        Destroy(newTank, minTimeBetweenTank);
+
+        Invoke("TankInstantiate", timeBetweenTank);
     }
 
     public void UpdateScoreText(float score)

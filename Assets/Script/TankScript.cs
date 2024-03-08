@@ -20,7 +20,7 @@ public class TankScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            //Call GameManager life player 
+            PlayerManager.instance.LoseLife(1);
         }
 
         if (collision.gameObject.CompareTag("BigBullet"))
