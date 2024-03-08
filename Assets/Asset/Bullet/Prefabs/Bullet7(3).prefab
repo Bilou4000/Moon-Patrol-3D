@@ -126,10 +126,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4000011355271246}
-  - component: {fileID: 95000010771307922}
   m_Layer: 0
   m_Name: Bullet7(3)
-  m_TagString: Untagged
+  m_TagString: BigBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -151,24 +150,3 @@ Transform:
   - {fileID: 4000010224079020}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &95000010771307922
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1000012510010764}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 880ece80a80e24247acbf7051251de73, type: 3}
-  m_Controller: {fileID: 9100000, guid: 9d235b32fc18af34d9f8d83f1f6b5fee, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0

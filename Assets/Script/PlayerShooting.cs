@@ -28,7 +28,7 @@ public class PlayerShooting : MonoBehaviour
             turret.transform.LookAt(mousePos, Vector3.up);
         }
 
-        if (Input.GetKeyUp(KeyCode.Mouse0) && !GameObject.Find("Big Bullet(Clone)"))
+        if (Input.GetKeyUp(KeyCode.Mouse0) && !GameObject.Find("Big_Bullet_Variant(Clone)"))
         {
             Instantiate(bigBullet, transform.position + new Vector3(1,0.5f,0), Quaternion.Euler(0,0,90));
         }
