@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Search;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
@@ -24,6 +25,7 @@ public class PlayerManager : MonoBehaviour
     private bool isInvincibile, hasShield;
     private IEnumerator damageCoroutine = null;
 
+    GameObject[] allUFO, allMines;
     private float originalY;
     private void Awake()
     {
@@ -42,6 +44,8 @@ public class PlayerManager : MonoBehaviour
 
     private void Update()
     {
+        allMines = GameObject.FindGameObjectsWithTag("Mine");
+        allUFO = GameObject.FindGameObjectsWithTag("UFO");
         if (lives <= 0)
         {
             GameManager.instance.GameOver();
@@ -93,6 +97,15 @@ public class PlayerManager : MonoBehaviour
             StartCoroutine(damageCoroutine);
         }
 
+        for (int i = 0; i < allUFO.Length; i++)
+        {
+            Destroy(allUFO[i]);
+        }
+        for (int i = 0; i < allMines.Length; i++)
+        {
+            Destroy(allMines[i]);
+        }
+        
         GameManager.instance.UpdateLivesText(lives);
         StartCoroutine(Death());
 

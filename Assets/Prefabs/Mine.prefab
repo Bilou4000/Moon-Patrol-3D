@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5049066733656998119}
   m_Layer: 6
   m_Name: Mine
-  m_TagString: SmallRock
+  m_TagString: Mine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

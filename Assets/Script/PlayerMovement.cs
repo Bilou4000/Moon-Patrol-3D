@@ -174,6 +174,12 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = true;
             
         }
+
+        if (collision.gameObject.CompareTag("Mine"))
+        {
+            PlayerManager.instance.LoseLife(1);
+
+        }
     }
 
     private void OnCollisionStay(Collision collision)
