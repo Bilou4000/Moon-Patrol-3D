@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.13036549, g: 0.094848044, b: 0.12510106, a: 1}
+  m_IndirectSpecularColor: {r: 0.13036436, g: 0.0948469, b: 0.12510028, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8897,7 +8897,7 @@ MonoBehaviour:
   waitTimeBeforeTankDifficulty: 60
   waitTimeBeforeShieldDifficulty: 40
   timeToDecrease: 0.1
-  UFO: {fileID: 7145238492098584821, guid: 01eca4c9c8bffff4899074cb86e0b6f6, type: 3}
+  UFO: {fileID: 6052502086639656657, guid: a5f65a4aed4cf57409ed7dfe3cbc6b24, type: 3}
   UFORightArrow: {fileID: 608935245}
   UFOLeftArrow: {fileID: 1819001288}
   maxUFO: 3
