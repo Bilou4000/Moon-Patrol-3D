@@ -9,11 +9,12 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    [SerializeField] private TextMeshProUGUI scoreText, livesText;
+    [Header("Screen")]
     [SerializeField] private float outOfScreenDistance;
+    [SerializeField] private TextMeshProUGUI scoreText, livesText;
     private float actualTime;
 
-    [Header("Diificulty")]
+    [Header("Difficulty")]
     [SerializeField] private float waitTimeBeforeUFODifficulty;
     [SerializeField] private float waitTimeBeforeTankDifficulty, waitTimeBeforeShieldDifficulty, timeToDecrease;
 
@@ -21,11 +22,13 @@ public class GameManager : MonoBehaviour
 
     [Header("UFO")]
     [SerializeField] private GameObject UFO;
+    [SerializeField] private GameObject UFORightArrow, UFOLeftArrow;
     [SerializeField] private float maxUFO, timeBetweenUFO, minTimeBetweenUFO;
     private GameObject[] allUFO;
 
     [Header("Tank")]
     [SerializeField] private GameObject Tank;
+    [SerializeField] private GameObject tankRightArrow, tankLeftArrow;
     [SerializeField] private float timeBetweenTank, minTimeBetweenTank;
     private GameObject newTank;
 
@@ -38,6 +41,7 @@ public class GameManager : MonoBehaviour
     private Transform thePlayer;
     private Vector3 posToAppear;
     private float sideOfScreen;
+    private bool spawningFromRight;
 
 
     private void Awake()
@@ -92,10 +96,12 @@ public class GameManager : MonoBehaviour
         if(sideOfScreen == 0)
         {
             posToAppear = new Vector3(thePlayer.position.x + outOfScreenDistance, 0.9f, 0);
+            spawningFromRight = true;
         }
         else
         {
             posToAppear = new Vector3(thePlayer.position.x - outOfScreenDistance, 0.9f, 0);
+            spawningFromRight = false;
         }
     }
 
@@ -106,7 +112,19 @@ public class GameManager : MonoBehaviour
 
         if (allUFO.Length < maxUFO)
         {
+            if (spawningFromRight)
+            {
+                UFORightArrow.SetActive(true);
+            }
+            else if (!spawningFromRight)
+            {
+                UFOLeftArrow.SetActive(true);
+            }
+
             Instantiate(UFO, posToAppear, transform.rotation);
+
+            StartCoroutine(HideObjectOnScreen(UFORightArrow));
+            StartCoroutine(HideObjectOnScreen(UFOLeftArrow));
         }
 
         Invoke("UFOInstantiate", timeBetweenUFO);
@@ -116,7 +134,20 @@ public class GameManager : MonoBehaviour
     {
         ChooseSideOfScreen();
 
+        if (spawningFromRight)
+        {
+            tankRightArrow.SetActive(true);
+        }
+        else if (!spawningFromRight)
+        {
+            tankLeftArrow.SetActive(true);
+        }
+
         newTank = Instantiate(Tank, posToAppear, transform.rotation);
+
+        StartCoroutine(HideObjectOnScreen(tankRightArrow));
+        StartCoroutine(HideObjectOnScreen(tankLeftArrow));
+
         Destroy(newTank, minTimeBetweenTank);
 
         Invoke("TankInstantiate", timeBetweenTank);
@@ -137,6 +168,12 @@ public class GameManager : MonoBehaviour
         }
 
         Invoke("ShieldInstantiate", timeBetweenShield);
+    }
+
+    private IEnumerator HideObjectOnScreen(GameObject obj)
+    {
+        yield return new WaitForSeconds(1);
+        obj.SetActive(false);
     }
 
     public void UpdateScoreText(float score)
