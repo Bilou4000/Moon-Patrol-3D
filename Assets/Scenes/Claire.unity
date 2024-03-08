@@ -134,7 +134,6 @@ GameObject:
   - component: {fileID: 21255847}
   - component: {fileID: 21255850}
   - component: {fileID: 21255849}
-  - component: {fileID: 21255848}
   m_Layer: 0
   m_Name: Trail
   m_TagString: Untagged
@@ -151,35 +150,12 @@ Transform:
   m_GameObject: {fileID: 21255846}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.000000059605, y: -0, z: 3.41}
-  m_LocalScale: {x: 0.07930406, y: 3.648276, z: 0.07930406}
+  m_LocalPosition: {x: 0.000000059605, y: 0, z: 4.57}
+  m_LocalScale: {x: 0.07930406, y: 4.380247, z: 0.07930406}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 777036041}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!136 &21255848
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 21255846}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!23 &21255849
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -200,7 +176,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 33230baef4dda4cf4bd25fcb15d0d06f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2341,17 +2317,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6728a01e1d62dad40a73709dab5b2fb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floor: {fileID: 7680594961641171239, guid: 67dfec222c681c8469540657c7ee5993, type: 3}
+  floor: {fileID: 307160993823483933, guid: b5b722e13de7ea54ba61128e6ea70653, type: 3}
   player: {fileID: 1119525743}
   craterDifficulty: 1
   rockDifficulty: 5
-  smallRock: {fileID: 2128375153305414178, guid: 81d3b3bfcc5ed7e45978f186100bf3a8, type: 3}
-  mediumRock: {fileID: 3560008688028588871, guid: 4ca2ffd8e49ad0449b9105c50c687d19, type: 3}
-  largeRock: {fileID: 3788094599947182726, guid: 84d6b76972ca399458366cebf9a114f2, type: 3}
+  smallRock: {fileID: 788176093495198116, guid: a5b3c5d094ed2d047b108798b4eb1d4b, type: 3}
+  mediumRock: {fileID: 4252720370717857891, guid: 7fd4c1c1480585e468f4f12d6bcea542, type: 3}
+  largeRock: {fileID: 8370367946845122368, guid: 9028940208d622a4588be8db9de225dc, type: 3}
   noRock: {fileID: 3947932825558900165, guid: db0c8fb77f4fc544d8547c84cbba6b84, type: 3}
-  smallRockChances: 20
-  mediumRockChances: 15
-  largeRockChances: 5
+  smallRockChances: 0
+  mediumRockChances: 30
+  largeRockChances: 30
   smallCraterSize: 3
   bigCraterSize: 5.1
   smallCraterPercent: 15
