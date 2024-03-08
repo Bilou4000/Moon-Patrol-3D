@@ -22,7 +22,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private float timeAfterBingHit;
     [SerializeField] private float timeOfShield;
     private bool isInvincibile;
-    private IEnumerator damageCoroutine = null, shieldCoroutine = null;
+    private IEnumerator damageCoroutine = null;
 
     private float originalY;
     private void Awake()
@@ -44,18 +44,16 @@ public class PlayerManager : MonoBehaviour
     {
         if (lives <= 0)
         {
-            //gameOver Screen
-            Time.timeScale = 0f;
-            //Destroy(gameObject);
+            GameManager.instance.GameOver();
         }
 
-        if (transform.position.y < 0)
+        if (transform.position.y < -3)
         {
-            LoseLife(1);
+            lives -= 1;
+            GameManager.instance.UpdateLivesText(lives);
 
-            isInvincibile = false;
-            StopCoroutine(shieldCoroutine);
-            StopCoroutine(damageCoroutine);
+            transform.position = new Vector3(MapScript.instance.GetOldestFloor(), originalY, transform.position.z);
+
         }
 
         if (lives < maxLives && score >= scoreThreshold)
@@ -63,6 +61,15 @@ public class PlayerManager : MonoBehaviour
             lives += 1;
             scoreThreshold += startscoreThreshold;
             GameManager.instance.UpdateLivesText(lives);
+        }
+
+        if(isInvincibile)
+        {
+            GetComponent<Rigidbody>().excludeLayers = 6;
+        }
+        else
+        {
+            GetComponent<Rigidbody>().includeLayers = 6;
         }
     }
     public float GetScore()
@@ -86,7 +93,7 @@ public class PlayerManager : MonoBehaviour
 
         GameManager.instance.UpdateLivesText(lives);
         StartCoroutine(Death());
-       
+
     }
 
     public void SetScore(float newScore)
@@ -98,26 +105,34 @@ public class PlayerManager : MonoBehaviour
     public void ShieldPickUp()
     {
         StopCoroutine(damageCoroutine);
-
-        shieldCoroutine = Invicible(timeOfShield);
-        StartCoroutine(shieldCoroutine);
+        StartCoroutine(Invicible(timeOfShield));
     }
 
     IEnumerator Death()
     {
-        Instantiate(explosionDeath, transform.position, transform.rotation);
+        if(!GameObject.Find("Bomb_Explosion(Clone)"))
+        {
+            Instantiate(explosionDeath, transform.position, transform.rotation);
+        }
+        
         GetComponent<PlayerMovement>().enabled = false;
         GetComponent<PlayerShooting>().enabled = false;
+
         buggy.SetActive(false);
         wheel1.SetActive(false);
         wheel2.SetActive(false);
         wheel3.SetActive(false);
         wheel4.SetActive(false);
+
         yield return new WaitForSeconds(1.5f);
+
         Destroy(GameObject.Find("Bomb_Explosion(Clone)"));
+
         transform.position = new Vector3(MapScript.instance.GetOldestFloor(), originalY, transform.position.z);
+
         GetComponent<PlayerMovement>().enabled = true;
-        GetComponent<PlayerShooting>().enabled=true;
+        GetComponent<PlayerShooting>().enabled = true;
+
         buggy.SetActive(true);
         wheel1.SetActive(true);
         wheel2.SetActive(true);
@@ -127,10 +142,10 @@ public class PlayerManager : MonoBehaviour
     private IEnumerator Invicible(float time)
     {
         isInvincibile = true;
-        gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
+        //gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
         yield return new WaitForSeconds(time);
 
-        gameObject.GetComponent<MeshRenderer>().material.color = Color.white;
+        //gameObject.GetComponent<MeshRenderer>().material.color = Color.white;
         isInvincibile = false;
     }
 

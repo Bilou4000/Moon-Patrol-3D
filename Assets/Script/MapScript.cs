@@ -26,7 +26,6 @@ public class MapScript : MonoBehaviour
     private GameObject[] allFloor;
     private GameObject lastFloor, oldestFloor;
     private MapState mapState;
-    private MapState[] floorDifficulty;
     private float time, nextActionTime, period;
 
     public static MapScript instance;
@@ -38,7 +37,6 @@ public class MapScript : MonoBehaviour
     private void Start()
     {
         period = 10;
-        //mapState = (MapState)3;
     }
 
     private void Update()
@@ -49,11 +47,7 @@ public class MapScript : MonoBehaviour
         if (time > nextActionTime)
         {
             nextActionTime += period;
-            // execute block of code here
         }
-
-        //difficulty easy : if(this difficulty then -->)
-        //if not do an edless with increasing difficulty
 
         if (player.transform.position.x < allFloor.Last().transform.position.x) 
         {
@@ -73,8 +67,6 @@ public class MapScript : MonoBehaviour
 
             if (mapState == MapState.NoCrater)
             {
-                
-
                 lastFloor = allFloor.Last();
                 
                 MeshRenderer renderer = lastFloor.GetComponent<MeshRenderer>();
