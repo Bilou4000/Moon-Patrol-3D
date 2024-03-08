@@ -112,20 +112,25 @@ public class PlayerManager : MonoBehaviour
         {
             Instantiate(explosionDeath, transform.position, transform.rotation);
         }
-
         
         GetComponent<PlayerMovement>().enabled = false;
         GetComponent<PlayerShooting>().enabled = false;
+
         buggy.SetActive(false);
         wheel1.SetActive(false);
         wheel2.SetActive(false);
         wheel3.SetActive(false);
         wheel4.SetActive(false);
+
         yield return new WaitForSeconds(1.5f);
+
         Destroy(GameObject.Find("Bomb_Explosion(Clone)"));
+
         transform.position = new Vector3(MapScript.instance.GetOldestFloor(), originalY, transform.position.z);
+
         GetComponent<PlayerMovement>().enabled = true;
         GetComponent<PlayerShooting>().enabled=true;
+
         buggy.SetActive(true);
         wheel1.SetActive(true);
         wheel2.SetActive(true);
