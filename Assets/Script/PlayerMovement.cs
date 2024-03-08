@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Shield")]
     [SerializeField] float flashInterval;
-    [SerializeField] private GameObject Ekey, TriangleKey;
+    [SerializeField] private GameObject Ekey, TriangleKey, shieldImage;
 
     private MoonPatrolInput input = null;
     private Rigidbody rb = null;
@@ -46,6 +46,10 @@ public class PlayerMovement : MonoBehaviour
         mainCamera = Camera.main;
         mainCameraPos = mainCamera.transform.localPosition;
         cameraStartXPos = mainCameraPos.x;
+
+        Ekey.SetActive(false);
+        TriangleKey.SetActive(false);
+        shieldImage.SetActive(false);
     }
 
     private void OnEnable()
@@ -141,6 +145,7 @@ public class PlayerMovement : MonoBehaviour
         hasShield = false;
         Ekey.SetActive(false);
         TriangleKey.SetActive(false);
+        shieldImage.SetActive(false);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -163,6 +168,7 @@ public class PlayerMovement : MonoBehaviour
             if (!hasShield)
             {
                 hasShield = true;
+                shieldImage.SetActive(true);
 
                 if (Gamepad.current != null)
                 {
