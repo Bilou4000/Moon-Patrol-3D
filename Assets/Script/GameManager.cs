@@ -38,6 +38,9 @@ public class GameManager : MonoBehaviour
     private GameObject[] allShield;
     private GameObject newShield;
 
+    [Header("GameOver")]
+    [SerializeField] GameObject gameOver;
+
     private Transform thePlayer;
     private Vector3 posToAppear;
     private float sideOfScreen;
@@ -51,6 +54,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        gameOver.SetActive(false);
+
         thePlayer = PlayerMovement.instance.transform;
 
         timeBeforeDifficultyUFOIncrease = waitTimeBeforeUFODifficulty;
@@ -184,5 +189,10 @@ public class GameManager : MonoBehaviour
     public void UpdateLivesText(float lives)
     {
         livesText.text = lives.ToString();
+    }
+
+    public void GameOver()
+    {
+        gameOver.SetActive(true);
     }
 }

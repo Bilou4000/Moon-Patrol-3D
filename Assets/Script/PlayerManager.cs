@@ -44,7 +44,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (lives <= 0)
         {
-            //gameOver Screen
+            GameManager.instance.GameOver();
             Time.timeScale = 0f;
             //Destroy(gameObject);
         }
