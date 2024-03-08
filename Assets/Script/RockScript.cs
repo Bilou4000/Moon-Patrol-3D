@@ -10,7 +10,7 @@ public class RockScript : MonoBehaviour
     GameObject player;
     private void Awake()
     {
-        player = GameObject.Find("Player");
+        player = GameObject.Find("Player1");
     }
     private void Start()
     {
