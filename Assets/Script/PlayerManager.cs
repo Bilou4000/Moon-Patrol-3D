@@ -19,8 +19,8 @@ public class PlayerManager : MonoBehaviour
     private float startscoreThreshold;
 
     [Header("Invicible")]
-    [SerializeField] private float timeAfterBingHit;
-    [SerializeField] private float timeOfShield;
+    [SerializeField] private GameObject shield;
+    [SerializeField] private float timeAfterBingHit, timeOfShield;
     private bool isInvincibile;
     private IEnumerator damageCoroutine = null;
 
@@ -105,7 +105,10 @@ public class PlayerManager : MonoBehaviour
     public void ShieldPickUp()
     {
         StopCoroutine(damageCoroutine);
+
+        shield.GetComponent<ParticleSystem>().Play();
         StartCoroutine(Invicible(timeOfShield));
+        StartCoroutine(CreateShield());
     }
 
     IEnumerator Death()
@@ -142,11 +145,16 @@ public class PlayerManager : MonoBehaviour
     private IEnumerator Invicible(float time)
     {
         isInvincibile = true;
-        //gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
         yield return new WaitForSeconds(time);
 
-        //gameObject.GetComponent<MeshRenderer>().material.color = Color.white;
+        //shield.GetComponent<ParticleSystem>().Play();
         isInvincibile = false;
+    }
+
+    private IEnumerator CreateShield()
+    {
+        yield return new WaitForSeconds(3.1f);
+        shield.GetComponent<ParticleSystem>().Pause();
     }
 
 
