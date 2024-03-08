@@ -45,8 +45,6 @@ public class PlayerManager : MonoBehaviour
         if (lives <= 0)
         {
             GameManager.instance.GameOver();
-            Time.timeScale = 0f;
-            //Destroy(gameObject);
         }
 
         if (transform.position.y < 0)
@@ -140,10 +138,10 @@ public class PlayerManager : MonoBehaviour
     private IEnumerator Invicible(float time)
     {
         isInvincibile = true;
-        gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
+        //gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
         yield return new WaitForSeconds(time);
 
-        gameObject.GetComponent<MeshRenderer>().material.color = Color.white;
+        //gameObject.GetComponent<MeshRenderer>().material.color = Color.white;
         isInvincibile = false;
     }
 

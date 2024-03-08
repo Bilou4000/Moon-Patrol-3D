@@ -38,6 +38,9 @@ public class GameManager : MonoBehaviour
     private GameObject[] allShield;
     private GameObject newShield;
 
+    [Header("GameOver")]
+    [SerializeField] GameObject gameOver;
+
     private Transform thePlayer;
     private Vector3 posToAppear;
     private float sideOfScreen;
@@ -53,6 +56,8 @@ public class GameManager : MonoBehaviour
     {
         thePlayer = PlayerMovement.instance.transform;
 
+        gameOver.SetActive(false);
+
         timeBeforeDifficultyUFOIncrease = waitTimeBeforeUFODifficulty;
         timeBeforeDifficultyTankIncrease = waitTimeBeforeTankDifficulty;
         timeBeforeDifficultyShieldIncrease = waitTimeBeforeShieldDifficulty;
@@ -60,6 +65,8 @@ public class GameManager : MonoBehaviour
         Invoke("UFOInstantiate", timeBetweenUFO);
         Invoke("TankInstantiate", timeBetweenTank);
         Invoke("ShieldInstantiate", timeBetweenShield);
+
+        Time.timeScale = 1f;
     }
 
 
@@ -184,5 +191,16 @@ public class GameManager : MonoBehaviour
     public void UpdateLivesText(float lives)
     {
         livesText.text = lives.ToString();
+    }
+
+    public void GameOver()
+    {
+        gameOver.SetActive(true);
+        Invoke("StopGame", 3.15f);
+    }
+
+    private void StopGame()
+    {
+        Time.timeScale = 0f;
     }
 }
