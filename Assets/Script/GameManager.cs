@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class GameManager : MonoBehaviour
 {
@@ -38,6 +39,9 @@ public class GameManager : MonoBehaviour
 
     [Header("GameOver")]
     [SerializeField] GameObject gameOver;
+    [SerializeField]
+    private TextMeshProUGUI gOscoreText;
+    float gOScore;
 
     private Transform thePlayer;
     private Vector3 posToAppear;
@@ -183,6 +187,7 @@ public class GameManager : MonoBehaviour
 
     public void UpdateScoreText(float score)
     {
+        gOScore = score;
         scoreText.text = "Score : " + score.ToString();
     }
 
@@ -194,6 +199,7 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         gameOver.SetActive(true);
+        gOscoreText.text = "Score : " + gOScore.ToString();
         Invoke("StopGame", 3.15f);
     }
 

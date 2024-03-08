@@ -100,7 +100,7 @@ public class MapScript : MonoBehaviour
                 RandomFloor();
             }
         }
-        else if (allFloor.Length >= 40 && Mathf.Abs(oldestFloor.transform.position.x - player.transform.position.x) > 100)
+        else if (allFloor.Length >= 40 && Mathf.Abs(oldestFloor.transform.position.x - player.transform.position.x) > 20)
         {
             Destroy(oldestFloor);
             increaseDifficulty = !increaseDifficulty;
