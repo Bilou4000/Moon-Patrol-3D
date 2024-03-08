@@ -15,6 +15,7 @@ public class MapScript : MonoBehaviour
     [SerializeField] private GameObject smallRock;
     [SerializeField] private GameObject mediumRock, largeRock, noRock;
     [SerializeField] private int smallRockChances, mediumRockChances, largeRockChances;
+    float spawnHeight;
 
     [Header("Crater")]
     [SerializeField] private float smallCraterSize;
@@ -22,12 +23,17 @@ public class MapScript : MonoBehaviour
     [SerializeField] private int smallCraterPercent, bigCraterPercent;
 
     bool canRock, increaseDifficulty;
-    private GameObject[] allFloor, allSmallRocks, allMediumRocks;
+    private GameObject[] allFloor;
     private GameObject lastFloor, oldestFloor;
     private MapState mapState;
     private MapState[] floorDifficulty;
     private float time, nextActionTime, period;
 
+    public static MapScript instance;
+    private void Awake()
+    {
+        instance = this;
+    }
 
     private void Start()
     {
@@ -38,8 +44,6 @@ public class MapScript : MonoBehaviour
     private void Update()
     {
         allFloor = GameObject.FindGameObjectsWithTag("Ground");
-        allSmallRocks = GameObject.FindGameObjectsWithTag("SmallRock");
-        allMediumRocks = GameObject.FindGameObjectsWithTag("MediumRock");
         time = Time.time;
 
         if (time > nextActionTime)
@@ -61,6 +65,7 @@ public class MapScript : MonoBehaviour
     private void NextFloor()
     {
         oldestFloor = allFloor.First();
+        
         RandomFloor();
         if (allFloor.Length < 40)
         {
@@ -78,7 +83,7 @@ public class MapScript : MonoBehaviour
                 Instantiate(floor, new Vector3(lastFloor.transform.position.x + lastFloorSize.x, -1.4f, -0.5f), transform.rotation);
                 if (canRock)
                 {
-                    Instantiate(RandomRock(), new Vector3(lastFloor.transform.position.x, lastFloor.transform.position.y + 2, lastFloor.transform.position.z), transform.rotation);
+                    Instantiate(RandomRock(), new Vector3(lastFloor.transform.position.x, lastFloor.transform.position.y + spawnHeight, lastFloor.transform.position.z), transform.rotation);
                     canRock = false;
                 }
                 canRock = true;
@@ -111,11 +116,27 @@ public class MapScript : MonoBehaviour
             increaseDifficulty = !increaseDifficulty;
             if (increaseDifficulty)
             {
-                smallCraterPercent += craterDifficulty;
-                bigCraterPercent += craterDifficulty;
-                smallRockChances += rockDifficulty;
-                mediumRockChances += rockDifficulty;
-                largeRockChances += rockDifficulty;
+                if(smallCraterPercent <= 33)
+                {
+                    smallCraterPercent += craterDifficulty;
+                }
+                if (bigCraterPercent <= 33)
+                {
+                    bigCraterPercent += craterDifficulty;
+                }
+                if (smallRockChances <= 33)
+                {
+                    smallRockChances += rockDifficulty;
+                }
+                if (mediumRockChances <= 33)
+                {
+                    mediumRockChances += rockDifficulty;
+                }
+                if (largeRockChances <= 33)
+                {
+                    largeRockChances += rockDifficulty;
+                }
+
             }
         }
 
@@ -146,16 +167,20 @@ public class MapScript : MonoBehaviour
         int rnd = Random.Range(0, 101);
         if (rnd < smallRockChances)
         {
+            spawnHeight = 2f;
             return smallRock;
-
+            
         }
         else if (smallRockChances < rnd && rnd < (smallRockChances + mediumRockChances))
         {
+            spawnHeight = 2.5f;
             return mediumRock;
+            
 
         }
         else if (rnd > smallRockChances + mediumRockChances && rnd <(smallRockChances +largeRockChances + mediumRockChances))
         {
+            spawnHeight = 3f;
             return largeRock;
         }
         else if (rnd > (smallRockChances + largeRockChances + mediumRockChances))
@@ -166,6 +191,10 @@ public class MapScript : MonoBehaviour
         return noRock;
     }
 
+    public float GetOldestFloor()
+    {
+        return allFloor[4].transform.position.x;
+    }
     public enum MapState
     {
         SmallCrater,
