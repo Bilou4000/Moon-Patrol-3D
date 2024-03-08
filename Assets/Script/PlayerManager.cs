@@ -44,7 +44,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (lives <= 0)
         {
-            //gameOver Screen
+            GameManager.instance.GameOver();
             Time.timeScale = 0f;
             //Destroy(gameObject);
         }
@@ -59,6 +59,15 @@ public class PlayerManager : MonoBehaviour
             lives += 1;
             scoreThreshold += startscoreThreshold;
             GameManager.instance.UpdateLivesText(lives);
+        }
+
+        if(isInvincibile)
+        {
+            GetComponent<Rigidbody>().excludeLayers = 6;
+        }
+        else
+        {
+            GetComponent<Rigidbody>().includeLayers = 6;
         }
     }
     public float GetScore()
@@ -83,7 +92,6 @@ public class PlayerManager : MonoBehaviour
 
         GameManager.instance.UpdateLivesText(lives);
         StartCoroutine(Death());
-       
     }
 
     public void SetScore(float newScore)
