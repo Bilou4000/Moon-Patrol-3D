@@ -13,7 +13,7 @@ public class TankScript : MonoBehaviour
 
     private void Update()
     {
-        transform.position += transform.forward * speed * Time.deltaTime;
+        transform.position += transform.forward * speed * PlayerMovement.instance.GetMoveSpeed() * Time.deltaTime;
     }
 
     private void OnCollisionEnter(Collision collision)
