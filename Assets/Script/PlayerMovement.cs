@@ -90,10 +90,10 @@ public class PlayerMovement : MonoBehaviour
                 Ekey.SetActive(false);
                 TriangleKey.SetActive(false);
                 shieldImage.SetActive(false);
-
+                hasShield = false;
 
                 PlayerManager.instance.ShieldPickUp();
-                hasShield = false;
+
             }
         }
     }

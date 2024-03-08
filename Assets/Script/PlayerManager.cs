@@ -51,8 +51,9 @@ public class PlayerManager : MonoBehaviour
         {
             lives -= 1;
             GameManager.instance.UpdateLivesText(lives);
-
+            StartCoroutine(onImpact());
             transform.position = new Vector3(MapScript.instance.GetOldestFloor(), originalY, transform.position.z);
+
 
         }
 
@@ -88,6 +89,7 @@ public class PlayerManager : MonoBehaviour
         {
             lives -= damage;
             damageCoroutine = Invicible(timeAfterBingHit);
+            StartCoroutine(onImpact());
             StartCoroutine(damageCoroutine);
         }
 
@@ -104,7 +106,10 @@ public class PlayerManager : MonoBehaviour
 
     public void ShieldPickUp()
     {
-        //StopCoroutine(damageCoroutine);
+        if(damageCoroutine != null)
+        {
+            StopCoroutine(damageCoroutine);
+        }
 
         shield.GetComponent<ParticleSystem>().Play();
         StartCoroutine(Invicible(timeOfShield));
@@ -147,6 +152,7 @@ public class PlayerManager : MonoBehaviour
         isInvincibile = true;
         Physics.IgnoreLayerCollision(4, 6, true);
         Physics.IgnoreLayerCollision(4, 7, true);
+
         yield return new WaitForSeconds(time);
 
         if (hasShield)
@@ -161,9 +167,6 @@ public class PlayerManager : MonoBehaviour
         isInvincibile = false;
         Physics.IgnoreLayerCollision(4, 6, false);
         Physics.IgnoreLayerCollision(4, 7, false);
-
-
-
     }
 
     private IEnumerator CreateShield()
@@ -171,6 +174,13 @@ public class PlayerManager : MonoBehaviour
         hasShield = true;
         yield return new WaitForSeconds(3.1f);
         shield.GetComponent<ParticleSystem>().Pause();
+    }
+
+    private IEnumerator onImpact()
+    {
+        buggy.GetComponent<MeshRenderer>().material.color = Color.red;
+        yield return new WaitForSeconds(1);
+        buggy.GetComponent<MeshRenderer>().material.color = Color.white;
     }
 
 
